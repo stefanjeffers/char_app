@@ -11,7 +11,9 @@ CharApp::Application.configure do
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
-  config.action_view.debug_rjs             = true
+
+  # Commented out, SJJ, to work around error: "ERROR NoMethodError: undefined method `debug_rjs=' for ActionView::Base:Class."
+  # config.action_view.debug_rjs             = true
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
