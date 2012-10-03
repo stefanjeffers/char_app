@@ -1,10 +1,12 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require "sprockets/railtie"
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env) if defined?(Bundler)
+# Replaced by following, SJJ:
+# Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module CharApp
   class Application < Rails::Application
@@ -38,5 +40,9 @@ module CharApp
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+    # Enable the asset pipeline
+    config.assets.enabled = true
+
   end
 end
