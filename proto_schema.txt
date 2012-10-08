@@ -1,0 +1,15 @@
+CREATE TABLE pin_names(
+    base NOT NULL,
+    offset NOT NULL,
+    subindex NOT NULL DEFAULT '_',
+    ord NOT NULL DEFAULT '1',
+    pinyin,
+    name_word,
+    name_word_abbrev,
+    part_of_speech,
+    graph_id NOT NULL,
+    uniq_id PRIMARY KEY
+    );
+
+rails generate model pin_name base:string offset:string subindex:string ord:string pinyin:string name_word:string name_word_abrev:string part_of_speech:string graph_id
+ 

@@ -1,0 +1,41 @@
+# == Schema Information
+#
+# Table name: pin_names
+#
+#  id              :integer          not null, primary key
+#  base            :string(255)
+#  offset          :string(255)
+#  subindex        :string(255)
+#  ord             :string(255)
+#  pinyin          :string(255)
+#  name_word       :string(255)
+#  name_word_abrev :string(255)
+#  part_of_speech  :string(255)
+#  graph_id        :string(255)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  base: MyString
+  offset: MyString
+  subindex: MyString
+  ord: MyString
+  pinyin: MyString
+  name_word: MyString
+  name_word_abrev: MyString
+  part_of_speech: MyString
+  graph_id: MyString
+
+two:
+  base: MyString
+  offset: MyString
+  subindex: MyString
+  ord: MyString
+  pinyin: MyString
+  name_word: MyString
+  name_word_abrev: MyString
+  part_of_speech: MyString
+  graph_id: MyString
