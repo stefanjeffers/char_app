@@ -11,28 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121008122106) do
+ActiveRecord::Schema.define(:version => 20121007075725) do
 
-  create_table "pinnames", :force => true do |t|
+  create_table "pin_names", :force => true do |t|
     t.string   "base"
     t.string   "offset"
     t.string   "subindex"
     t.string   "ord"
     t.string   "pinyin"
     t.string   "name_word"
-    t.string   "name_word_abbrev"
+    t.string   "name_word_abrev"
     t.string   "part_of_speech"
     t.string   "graph_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
-  add_index "pinnames", ["base"], :name => "index_pinnames_on_base"
-  add_index "pinnames", ["name_word"], :name => "index_pinnames_on_name_word"
-  add_index "pinnames", ["name_word_abbrev"], :name => "index_pinnames_on_name_word_abbrev"
-  add_index "pinnames", ["offset"], :name => "index_pinnames_on_offset"
-  add_index "pinnames", ["part_of_speech"], :name => "index_pinnames_on_part_of_speech"
-  add_index "pinnames", ["pinyin"], :name => "index_pinnames_on_pinyin"
+  add_index "pin_names", ["base"], :name => "index_pin_names_on_base"
+  add_index "pin_names", ["name_word"], :name => "index_pin_names_on_name_word"
+  add_index "pin_names", ["name_word_abrev"], :name => "index_pin_names_on_name_word_abrev"
+  add_index "pin_names", ["offset"], :name => "index_pin_names_on_offset"
+  add_index "pin_names", ["part_of_speech"], :name => "index_pin_names_on_part_of_speech"
+  add_index "pin_names", ["pinyin"], :name => "index_pin_names_on_pinyin"
 
   create_table "users", :force => true do |t|
     t.string   "name"

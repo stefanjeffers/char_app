@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  base: MyString
+  offset: MyString
+  subindex: MyString
+  ord: MyString
+  pinyin: MyString
+  name_word: MyString
+  name_word_abbrev: MyString
+  part_of_speech: MyString
+  graph_id: MyString
+
+two:
+  base: MyString
+  offset: MyString
+  subindex: MyString
+  ord: MyString
+  pinyin: MyString
+  name_word: MyString
+  name_word_abbrev: MyString
+  part_of_speech: MyString
+  graph_id: MyString

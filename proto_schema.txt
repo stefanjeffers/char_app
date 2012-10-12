@@ -1,4 +1,4 @@
-CREATE TABLE pin_names(
+CREATE TABLE pinnames(
     base NOT NULL,
     offset NOT NULL,
     subindex NOT NULL DEFAULT '_',
@@ -11,5 +11,9 @@ CREATE TABLE pin_names(
     uniq_id PRIMARY KEY
     );
 
-rails generate model pin_name base:string offset:string subindex:string ord:string pinyin:string name_word:string name_word_abrev:string part_of_speech:string graph_id
+rails generate model pinname base:string offset:string subindex:string ord:string pinyin:string name_word:string name_word_abbrev:string part_of_speech:string graph_id
+
+insert into pinnames values( 1, 001, 001, 'a', 1, 'yi1', 'dash', 'D', 'noun', '', '', '' );
+insert into pinnames values( 3, 011, 001, 'a', 1, 'xian1', 'unk', 'U', 'noun', '', '', '' );
+insert into pinnames values( 5, 111, 001, 'a', 1, 'shuang4', 'test', 'T', 'noun', '', '', '' );
  
