@@ -7,11 +7,11 @@ FactoryGirl.define do
   end
 
   factory :pinname do
-    base	"100"
-    offset	"2"
-    pinyin      "pian4"
-    name_word   "test"
-    name_word_abbrev "T"
+    base	"177"
+    offset	"1"
+    pinyin      "ma3"
+    name_word   "horse"
+    name_word_abbrev "H"
     part_of_speech   "noun"
   end
 end

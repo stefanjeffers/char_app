@@ -1,16 +1,19 @@
 CharApp::Application.routes.draw do
 
+  # get "pinnames/new"
   # get "chars/new"
   # get "users/new"
   resources :users
   resources :chars
+  resources :pinnames
 
-  # get "static_pages/home"
+  get "static_pages/home"
   root to: 'static_pages#home'
 
   match '/signup',  to: 'users#new'
-  match '/create',  to: 'chars#new'
-  match '/pinname',  to: 'chars#new'
+  # match '/create',  to: 'pinnames#new'
+  # match '/pinname', to: 'pinnames#new'
+  match '/add_pinname', to: 'pinnames#new'
 
   get "static_pages/help"
   match '/help', to: 'static_pages#help'
