@@ -1,0 +1,3 @@
+<!--%= @user.name %>, <%= @user.email %-->
+<!--%= @pinname.base %>, <%= @pinname.offset %>, <%= @pinname.pinyin %>, <%= @pinname.name_word %>, <%= @pinname.name_word_abbrev %-->
+

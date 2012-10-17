@@ -1,0 +1,27 @@
+<% provide(:title, @pinname.name_word) %>
+
+<div class="row">
+  <aside class="span4">
+    <section>
+    <h1>
+        <%= image_for @pinname %>
+        <%= @pinname.name_word %>
+    </h1>
+    </section>
+  </aside>
+</div>
+
+<div>
+Index - 
+Pinyin -
+Name_word -
+Abbrev
+</div>
+<h1>
+<%= @pinname.base %>.<%= @pinname.offset %>: 
+<%= @pinname.pinyin %>,
+<%= @pinname.name_word %>
+(<%= @pinname.part_of_speech %>),
+<%= @pinname.name_word_abbrev %>
+</h1>
+
