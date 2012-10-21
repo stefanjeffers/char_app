@@ -4,6 +4,7 @@ CharApp::Application.routes.draw do
   # get "chars/new"
   # get "users/new"
   resources :users
+  resources :sessions, only: [:new, :create, :destroy]
   resources :chars
   resources :pinnames
 
@@ -11,6 +12,8 @@ CharApp::Application.routes.draw do
   root to: 'static_pages#home'
 
   match '/signup',  to: 'users#new'
+  match '/signin',  to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete
   # match '/create',  to: 'pinnames#new'
   # match '/pinname', to: 'pinnames#new'
   match '/add_pinname', to: 'pinnames#new'
