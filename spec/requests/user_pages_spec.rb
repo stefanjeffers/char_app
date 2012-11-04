@@ -53,9 +53,40 @@ describe "User pages" do
           expect { click_link('delete') }.to change(User, :count).by(-1)
         end
         it { should_not have_link('delete', href: user_path(admin)) }
-      end  # describe "as an admin user"
-    end  # describe "delete links"
 
+        describe "should not be able to delete self" do
+          let( :initial ) { User.count } # Not useful
+          before { delete user_path( admin ) } # ;  final = User.count }
+          let( :final ) { User.count } # Not useful
+          let( :diff ) { initial - final } # Not useful
+          # OK: before { delete user_path( User.first) }
+          # OK: before { delete user_path( User.find_by_admin( true ) ) }
+          # expect { delete user_path(admin) }.not_to change(User, :count)
+          # specify { diff.should_not be 
+          # specify { admin.reload.admin.should == ? }
+          # specify { initial == final } 
+          specify { admin.should be_admin } # doesn't seem to do anything
+          specify { response.should redirect_to( root_path) } # Only this seems to work
+          # specify { (delete user_path( admin )).should_not redirect_to(root_path) }
+          # specify { (delete user_path( admin )).should_not  change(User, :count) }
+          # final = User.count
+          # initial.should == final
+          # @temp = change(User, :count) 
+          # it { should_not change(User, :count) }
+        end
+      end  # describe "as an admin user"
+
+      describe "admin user should not be able to delete self" do
+        let(:admin) { FactoryGirl.create(:admin) }
+        before do
+          sign_in admin
+          visit users_path
+        # delete user_path( admin )
+        end
+        # specify { response.should_not redirect_to(root_path) }
+        # it { should_not change(User, :count) }
+      end  # describe "admin user"
+    end  # describe "delete links"
   end
 
   describe "profile page" do
@@ -95,10 +126,10 @@ describe "User pages" do
 
     describe "with valid information" do
       before do
-        fill_in "Name",         with: "Example User"
-        fill_in "Email",        with: "user@example.com"
-        fill_in "Password",     with: "foobar"
-        fill_in "Confirmation", with: "foobar"
+        fill_in "Name",             with: "Example User"
+        fill_in "Email",            with: "user@example.com"
+        fill_in "Password",         with: "foobar"
+        fill_in "Confirm Password", with: "foobar"
       end
 
       it "should create a user" do
@@ -133,7 +164,7 @@ describe "User pages" do
 
     describe "with invalid information" do
       before { click_button "Save changes" }
-
+         # This works because password confirmation is not filled in?
       it { should have_content('error') }
     end
 

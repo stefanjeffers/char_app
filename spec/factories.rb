@@ -11,11 +11,14 @@ FactoryGirl.define do
   end
 
   factory :pinname do
-    base	"177"
-    offset	"1"
+    # base	"177"
+    sequence(:base)  { |n| "#{n}" }
+    # offset	"1"
+    sequence(:offset)  { |n| "#{100-n}" }
     pinyin      "ma3"
-    name_word   "horse"
-    name_word_abbrev "H"
+    # name_word   "horse"
+    sequence(:name_word)  { |n| "word#{n}" }
+    name_word_abbrev "W"
     part_of_speech   "noun"
   end
 end

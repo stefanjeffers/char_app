@@ -26,6 +26,22 @@ namespace :db do
                    password: password,
                    password_confirmation: password)
     end
+
+    99.times do |n|
+      base = n + 1 
+      offset = 99 - n
+      pinyin = "ji1"
+      name_word  =  "word#{n+1}"
+      name_word_abbrev = "W#{n+1}"
+      part_of_speech = "noun"
+      Pinname.create!(
+          base:              base,
+          offset:            offset,
+          pinyin:            pinyin,
+          name_word:         name_word,
+          name_word_abbrev:  name_word_abbrev,
+          part_of_speech:    part_of_speech )
+    end
   end
 end
 

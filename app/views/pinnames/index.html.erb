@@ -1,0 +1,15 @@
+<% provide(:title, 'All Chars') %>
+<h1>All Chars</h1>
+
+<%= will_paginate %>
+
+<ul class="pinnames">
+  <% @pinnames.each do |pinname| %>
+    <li>
+      <!--%= image_for pinname %-->
+      <%= render @pinnames %>
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate %>

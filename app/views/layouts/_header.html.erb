@@ -8,6 +8,7 @@
           <li><%= link_to "Help",    help_path %></li>
 
           <% if signed_in? %>
+            <li><%= link_to "Chars", pinnames_path %></li>
             <li><%= link_to "Users", users_path %></li>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -23,7 +24,7 @@
               </ul>
             </li>
           <% else %>
-            <li><%= link_to "Sign in", '#' %></li>
+            <li><%= link_to "Sign in", signin_path %></li>
           <% end %>
         </ul>
       </nav>
