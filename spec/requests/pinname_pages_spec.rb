@@ -1,7 +1,7 @@
 
 require 'spec_helper'
-require 'factory_girl'
-require 'factories'
+# require 'factory_girl'
+# require 'factories'
 
 describe "Pinname pages" do
 

@@ -1,16 +1,33 @@
-<div class="center hero-unit">
-    <h1>Welcome to the Char App, Planting Seeds</h1>
+<% if signed_in? %>
+  <div class="row">
+    <aside class="span4">
+      <section>
+        <%= render 'shared/user_info' %>
+      </section>
+      <section>
+        <%= render 'shared/micropost_form' %>
+      </section>
+    </aside>
+    <div class="span8">
+      <h3>Micropost Feed</h3>
+      <%= render 'shared/feed' %>
+    </div>
+  </div>  
+<% else %>
 
-    <h2>
-      This is the home page for the Char Application, Planting Seeds.
-    </h2>
+  <div class="center hero-unit">
+      <h1>Welcome to the Char App, Planting Seeds</h1>
 
-  <%= link_to "Sign up now:", signup_path, class: "btn btn-large btn-primary" %>
-<!-- Just for fun. These will be obsolete later. -->
-  <!-- %= link_to "Create char", create_path, class: "btn btn-large btn-primary" % -->
-  <!-- %= link_to "Create pinname", pinname_path, class: "btn btn-large btn-primary" % -->
-  <%= link_to "Create Char", add_pinname_path, class: "btn btn-large btn-primary" %>
-</div>
+      <h2>
+        This is the home page for the Char Application, Planting Seeds.
+      </h2>
 
-<%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+    <%= link_to "Sign up now:", signup_path, class: "btn btn-large btn-primary" %>
+  <!-- Just for fun. These will be obsolete later. -->
+    <!-- %= link_to "Create char", create_path, class: "btn btn-large btn-primary" % -->
+    <!-- %= link_to "Create pinname", pinname_path, class: "btn btn-large btn-primary" % -->
+    <!-- %= link_to "Create Char", add_pinname_path, class: "btn btn-large btn-primary" % -->
+  </div>
 
+  <%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+<% end %> 

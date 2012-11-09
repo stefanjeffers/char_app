@@ -1,5 +1,54 @@
 <% provide(:title, @pinname.pinyin) %>
 
+
+<div class="row">
+  <aside class="span4">
+    <section>
+    <h1>
+        <%= image_for @pinname %>
+        <%= @pinname.name_word %>
+    </h1>
+    </section>
+  </aside>
+</div>
+
+<table  align="center" cellpadding="0" border=10 bordercolor=lightblue cellspacing="0" width="50%">
+  <tr align="center">
+    <th width="50" border=10 bordercolor=gray >
+      Index
+<!--
+        img alt=" " src="http://chinese-characters.org/images/cchar-0-0.jpg" width="245" height="102" /
+-->
+    </th>
+    <th width="50" border=10 bordercolor=gray >
+      Pinyin
+<!--
+         background="http://chinese-characters.org/images/topbg.jpg"
+-->
+    </th>
+    <th width="50" border=10 bordercolor=gray >
+      Name_word
+    </th>
+    <th width="50" border=10 bordercolor=gray >
+      Abbrev
+    </th>
+  </tr>
+  <tr align="center">
+    <td>
+      <%= @pinname.base %>.<%= @pinname.offset %> 
+    </td>
+    <td>
+      <%= @pinname.pinyin %>
+    </td>
+    <td>
+      <%= @pinname.name_word %>(<%= @pinname.part_of_speech %>)
+    </td>
+    <td>
+       <%= @pinname.name_word_abbrev %>
+    </td>
+  </tr>
+</table>
+
 <!--header class="navbar navbar-fixed-top"-->
   <div class="navbar-inner">
     <div class="container">
@@ -17,31 +66,4 @@
     </div>
   </div>
 <!--/header-->
-
-<div class="row">
-  <aside class="span4">
-    <section>
-    <h1>
-        <%= image_for @pinname %>
-        <%= @pinname.name_word %>
-    </h1>
-    </section>
-  </aside>
-</div>
-
-<!-- Make this a table, for now -->
-<div>
-Index -
-Pinyin -
-Name_word -
-Abbrev
-</div>
-<h1>
-<%= @pinname.base %>.<%= @pinname.offset %>: 
-<%= @pinname.pinyin %>,
-<%= @pinname.name_word %>
-(<%= @pinname.part_of_speech %>),
-<%= @pinname.name_word_abbrev %>
-</h1>
-
 

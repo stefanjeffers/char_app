@@ -27,6 +27,12 @@ namespace :db do
                    password_confirmation: password)
     end
 
+    users = User.all(limit: 6)
+    50.times do
+      content = Faker::Lorem.sentence(5)
+      users.each { |user| user.microposts.create!(content: content) }
+    end
+
     99.times do |n|
       base = n + 1 
       offset = 99 - n
@@ -42,6 +48,7 @@ namespace :db do
           name_word_abbrev:  name_word_abbrev,
           part_of_speech:    part_of_speech )
     end
+
   end
 end
 

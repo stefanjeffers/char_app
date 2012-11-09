@@ -10,6 +10,11 @@ FactoryGirl.define do
     end
   end
 
+  factory :micropost do
+    content "Lorem ipsum"
+    user
+  end
+
   factory :pinname do
     # base	"177"
     sequence(:base)  { |n| "#{n}" }
