@@ -8,8 +8,8 @@ describe "User pages" do
 
   describe "index" do
 
-    let(:user) { FactoryGirl.create(:user) }
-
+    let(:user) { FactoryGirl.create(:user, email: "indexuser@other.com") }
+      # Note: "before(:each)" is a synonym for "before":
     before(:each) do
       # sign_in FactoryGirl.create(:user)
       # FactoryGirl.create(:user, name: "Bob", email: "bob@example.com")
@@ -30,7 +30,6 @@ describe "User pages" do
       it { should have_selector('div.pagination') }
 
       it "should list each user" do
-        # User.all.each do |user|
         User.paginate(page: 1).each do |user|
           page.should have_selector('li', text: user.name)
         end
@@ -42,7 +41,7 @@ describe "User pages" do
       it { should_not have_link('delete') }
 
       describe "as an admin user" do
-        let(:admin) { FactoryGirl.create(:admin) }
+        let(:admin) { FactoryGirl.create(:admin, email: "admin1@other.com" ) }
         before do
           sign_in admin
           visit users_path
@@ -77,10 +76,10 @@ describe "User pages" do
       end  # describe "as an admin user"
 
       describe "admin user should not be able to delete self" do
-        let(:admin) { FactoryGirl.create(:admin) }
+        # let(:admin) { FactoryGirl.create(:admin, email: "admin2@other.com" ) }
         before do
-          sign_in admin
-          visit users_path
+        #  sign_in admin
+        #  visit users_path
         # delete user_path( admin )
         end
         # specify { response.should_not redirect_to(root_path) }
@@ -90,11 +89,12 @@ describe "User pages" do
   end
 
   describe "profile page" do
-    let(:user) { FactoryGirl.create(:user) }
+    let(:user) { FactoryGirl.create(:user, email: "profile1user@other.com") }
     let!(:m1)  { FactoryGirl.create(:micropost, user: user, content: "Foo") }
     let!(:m2)  { FactoryGirl.create(:micropost, user: user, content: "Bar") }
 
     before { visit user_path(user) }
+    after(:each)  { User.delete_all }
 
     it { should have_selector('h1',    text: user.name) }
     it { should have_selector('title', text: user.name) }
@@ -104,6 +104,41 @@ describe "User pages" do
       it { should have_content(m2.content) }
       it { should have_content(user.microposts.count) }
     end
+
+    describe "micropost delete links" do
+      let(:other_user) { FactoryGirl.create(:user, email: "otheruser@other.com") }
+      let!(:m1)  { FactoryGirl.create(:micropost, user: other_user, content: "Foo") }
+      let!(:m2)  { FactoryGirl.create(:micropost, user: other_user, content: "Bar") }
+
+      before do
+        sign_in user
+        visit user_path( other_user)
+      end
+
+      it { should_not have_link('delete') }
+    end
+
+    describe "pagination" do
+      # Check later: this line seemed to cause the "email already taken error". But how?
+      # before(:all) { 51.times { FactoryGirl.create(:micropost, user: user ) }}
+      before do
+        51.times { FactoryGirl.create(:micropost, user: user ) }
+
+        sign_in user
+        visit user_path( user)
+      end
+
+      after(:all)  { Micropost.delete_all }
+
+      it { should have_selector('div.pagination') }
+
+      it "should list each micropost" do
+        Micropost.paginate(page: 1).each do |micropost|
+          page.should have_selector('li', text: micropost.content )
+        end
+      end  # it "should list each micropost" 
+    end  # describe "pagination"
+
   end
 
   describe "signup page" do
@@ -158,7 +193,7 @@ describe "User pages" do
   end
 
   describe "edit" do
-    let(:user) { FactoryGirl.create(:user) }
+    let(:user) { FactoryGirl.create(:user, email: "edituser@other.com") }
     # before { visit edit_user_path(user) }
     before do
       sign_in user

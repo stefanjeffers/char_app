@@ -20,20 +20,71 @@ describe "Static pages" do
 
     describe "for signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
-      before do
-        FactoryGirl.create(:micropost, user: user, content: "Lorem ipsum")
-        FactoryGirl.create(:micropost, user: user, content: "Dolor sit amet")
-        sign_in user
-        visit root_path
+
+      describe "with one micropost" do
+        before do
+          FactoryGirl.create(:micropost, user: user, content: "Lorem ipsum")
+          sign_in user
+          visit root_path
+        end
+
+        it { should     have_selector 'span', text: '1 micropost'  }
+        it { should_not have_selector 'span', text: '1 microposts' }
       end
 
-      it "should render the user's feed" do
-        user.feed.each do |item|
-          page.should have_selector("li##{item.id}", text: item.content)
+      describe "with one micropost with a long word" do
+        before do
+          FactoryGirl.create(:micropost, user: user, content: "X" * 130 )
+          sign_in user
+          visit root_path
         end
+          # should see the long string broken into strings of at most 30 * 'X', separated, by this HTML code:
+        # it { should     have_selector 'span', text: raw( '8203' )} 
+        it { should     have_selector 'span', text: "X" * 30 }
+        it { should_not have_selector 'span', text: "X" * 31 }
       end
-    end
-  end
+
+      describe "with two microposts" do
+        before do
+          FactoryGirl.create(:micropost, user: user, content: "Lorem ipsum")
+          FactoryGirl.create(:micropost, user: user, content: "Dolor sit amet")
+            sign_in user
+            visit root_path
+        end
+
+        it { should  have_selector 'span', text: '2 microposts'  }
+        it "should render the user's feed" do
+          user.feed.each do |item|
+            page.should have_selector("li##{item.id}", text: item.content)
+          end
+        end
+      end  # describe "with two microposts"
+#____________________________________________
+
+      describe "pagination" do
+
+        # before(:all) { 51.times { FactoryGirl.create(:micropost, user: user ) }}
+        before do
+          51.times { FactoryGirl.create(:micropost, user: user ) }
+
+          sign_in user
+          visit root_path
+        end
+
+        after(:all)  { Micropost.delete_all }
+
+        it { should have_selector('div.pagination') }
+
+        it "should list each micropost" do
+          Micropost.paginate(page: 1).each do |micropost|
+            page.should have_selector('li', text: micropost.content )
+          end
+        end  # it "should list each micropost" 
+      end  # describe "pagination"
+#____________________________________________
+
+    end  # describe "for signed-in users"
+  end  # describe "Home page"
 
   let(:page_title) { '' }
 
