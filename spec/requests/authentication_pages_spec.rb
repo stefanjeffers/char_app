@@ -202,20 +202,26 @@ describe "Authentication" do
     end
 
     describe "as non-admin user" do
-      let(:user) { FactoryGirl.create(:user) }
+      let(:user)      { FactoryGirl.create(:user) }
       let(:non_admin) { FactoryGirl.create(:user) }
       let(:pinname)   { FactoryGirl.create(:pinname) }
 
       before { sign_in non_admin }
 
       describe "submitting a DELETE request to the Users#destroy action" do
-        before { delete user_path(user) }
+        before  { delete user_path(user) }
         specify { response.should redirect_to(root_path) }        
       end
 
       describe "submitting a DELETE request to the Pinnames#destroy action" do
-        before { delete pinname_path(pinname) }
+        before  { delete pinname_path(pinname) }
         specify { response.should redirect_to( user_path( non_admin)) }        
+      end
+
+        # Don't have delete for formula yet:
+      describe "submitting a DELETE request to the Formulas#destroy action" do
+        # before  { delete formula_path(formula) }
+        # specify { response.should redirect_to( user_path( non_admin)) }        
       end
     end  # describe "as non-admin user"
   end  # describe "authorization"

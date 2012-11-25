@@ -1,0 +1,70 @@
+<% provide(:title, @formula.alpha ) %>
+
+
+<div class="row">
+  <aside class="span4">
+    <section>
+    <h1>
+        <%= image_for @formula %>
+        <%= @formula.alpha %>
+    </h1>
+    </section>
+  </aside>
+</div>
+
+<table  align="center" cellpadding="0" border=10 bordercolor=lightblue cellspacing="0" width="50%">
+  <tr align="center">
+    <th width="50" border=10 bordercolor=gray >
+      Index
+    </th>
+    <th width="50" border=10 bordercolor=gray >
+      Index Formula
+    </th>
+    <th width="50" border=10 bordercolor=gray >
+      Word Formula
+    </th>
+    <th width="50" border=10 bordercolor=gray >
+      Abbreviation Formula
+    </th>
+    <th width="50" border=10 bordercolor=gray >
+      Alphabetic Form
+    </th>
+
+  </tr>
+  <tr align="center">
+    <td>
+      <%= @formula.base %>.<%= @formula.offset %> 
+    </td>
+    <td>
+      <%= @formula.iform %>
+    </td>
+    <td>
+      <%= @formula.word_form %>
+    </td>
+    <td>
+       <%= @formula.abbrev_form %>
+    </td>
+    <td>
+       <%= @formula.alpha %>
+    </td>
+  </tr>
+</table>
+
+<!--header class="navbar navbar-fixed-top"-->
+  <div class="navbar-inner">
+    <div class="container">
+      <nav>
+        <ul class="nav pull-right">
+          <% if signed_in? %>
+            <li><%= link_to "Update Formulas", edit_formula_path( @formula ) %></li>
+            <li><%= link_to "Add Formula Data", new_formula_path %></li>
+            <!-- Where, here? add a next link for next record, next in ID, or next in search results, etc? -->
+          <% else %>
+            <li><%= link_to "Sign in", signin_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+<!--/header-->
+

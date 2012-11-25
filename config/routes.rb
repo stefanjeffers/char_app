@@ -1,8 +1,10 @@
 CharApp::Application.routes.draw do
 
-  # get "pinnames/new"
-  # get "chars/new"
   # get "users/new"
+  # get "chars/new"
+  # get "pinnames/new"
+  # get "formulas/new"
+
   resources :users do
     member do
       get :following, :followers
@@ -14,6 +16,7 @@ CharApp::Application.routes.draw do
   resources :relationships, only: [      :create, :destroy]
   resources :chars
   resources :pinnames
+  resources :formulas
 
   get "static_pages/home"
   root to: 'static_pages#home'
@@ -24,6 +27,7 @@ CharApp::Application.routes.draw do
   # match '/create',  to: 'pinnames#new'
   # match '/pinname', to: 'pinnames#new'
   match '/add_pinname', to: 'pinnames#new'
+  match '/add_formula', to: 'formulas#new'
 
   get "static_pages/help"
   match '/help', to: 'static_pages#help'

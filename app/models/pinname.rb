@@ -17,6 +17,7 @@
 #
 
 class Pinname < ActiveRecord::Base
+      # Think about whether any of these should be accessable:
   attr_accessible :base, :graph_id, :name_word, :name_word_abbrev, :offset, :ord, :part_of_speech, :pinyin, :subindex
 
   before_save { self.pinyin.downcase! }

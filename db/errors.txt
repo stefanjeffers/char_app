@@ -1,0 +1,11 @@
+
+These errors are caused by strings containing "now" incorrectly getting picked up by edit and converted into "'NOW'"
+Must delete and reload pinnames table before load or create "all forms" table.
+But we can play with it for the time being, despite these five lines not being created:
+
+Error: near line 472: near "NOW": syntax error
+Error: near line 1515: near "NOW": syntax error
+Error: near line 1516: near "NOW": syntax error
+Error: near line 1679: near "NOW": syntax error
+Error: near line 1838: near "NOW": syntax error
+

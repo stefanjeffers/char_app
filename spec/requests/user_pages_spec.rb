@@ -188,6 +188,25 @@ describe "User pages" do
         end
       end
     end # describe "follow/unfollow buttons"
+#__________________________
+# For Problem 4, Section 11.5:
+
+    describe "follower/following counts" do
+      let(:other_user) { FactoryGirl.create(:user) }
+
+      before do
+        sign_in user   # Not necessary 
+        sign_in other_user  # Not necessary
+
+        other_user.follow!(user)
+        visit user_path(user)
+      end
+
+      it { should have_link("0 following", href: following_user_path(user)) }
+      it { should have_link("1 followers", href: followers_user_path(user)) }
+    end
+#__________________________
+
   end # describe "profile page"
 
   describe "signup page" do

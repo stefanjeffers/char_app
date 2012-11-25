@@ -11,7 +11,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121113092746) do
+ActiveRecord::Schema.define(:version => 20121123090501) do
+
+  create_table "formulas", :force => true do |t|
+    t.string   "base"
+    t.string   "offset"
+    t.string   "subindex"
+    t.string   "iform"
+    t.string   "word_form"
+    t.string   "abbrev_form"
+    t.string   "alpha"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "formulas", ["abbrev_form"], :name => "index_formulas_on_abbrev_form"
+  add_index "formulas", ["alpha"], :name => "index_formulas_on_alpha"
+  add_index "formulas", ["base"], :name => "index_formulas_on_base"
+  add_index "formulas", ["iform"], :name => "index_formulas_on_iform"
+  add_index "formulas", ["offset"], :name => "index_formulas_on_offset"
+  add_index "formulas", ["subindex"], :name => "index_formulas_on_subindex"
+  add_index "formulas", ["word_form"], :name => "index_formulas_on_word_form"
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
