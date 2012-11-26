@@ -1,0 +1,16 @@
+<% provide(:title, 'All Formulas') %>
+<h1>All Formulas</h1>
+
+<%= will_paginate %>
+
+<ul class="formulas">
+  <!--% @formulas.each do |formula| %
+-->
+    <!--li-->
+      <!--%= image_for character %-->
+      <%= render @formulas %>
+    <!--/li-->
+  <!--% end %-->
+</ul>
+
+<%= will_paginate %>

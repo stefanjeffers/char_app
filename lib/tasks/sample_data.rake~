@@ -1,11 +1,10 @@
 namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
-    # make_users
-    # make_pinnames
-    make_formulas
-    # make_microposts
-    # make_relationships
+    make_users
+    make_pinnames
+    make_microposts
+    make_relationships
   end
 end
 
@@ -69,14 +68,15 @@ def make_formulas
       base = n + 1 
       offset = 99 - n
       subindex = 0
-      iform = "#{base} * #{offset}"
-      word_form = "first-word * second-word"
-      abbrev_form = "FW * SW"
-      alpha = "FWASW" 
+      iform = base + " * " + offset
+      word_form = ""
+      abbrev_form = 
+      alpha =
 
-      Formula.create!(
+      Pinname.create!(
           base:              base,
           offset:            offset,
+          pinyin:            pinyin,
           subindex:          subindex,
           iform:             iform,
           word_form:         word_form,

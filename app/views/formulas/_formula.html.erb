@@ -1,0 +1,12 @@
+<li>
+      <!--%= image_for character %-->
+      <%= formula.base %>.<%= formula.offset %>.<%= formula.subindex %> |
+      <%= formula.alpha %> |
+      <%= link_to formula.alpha, formula %>
+
+      <% if current_user.admin? %>
+        | <%= link_to "delete", formula, method: :delete,
+                                  data: { confirm: "Are you sure?" } %>
+      <% end %>
+</li>
+

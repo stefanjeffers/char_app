@@ -1,0 +1,37 @@
+<% provide(:title, "Edit Formula Data") %> 
+<h1>Update Formula Data</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@formula) do |f| %>
+      <%= render 'shared/formula_error_messages' %>
+
+      <%= f.label      :base %>
+      <%= f.text_field :base %>
+
+      <%= f.label      :offset %>
+      <%= f.text_field :offset %>
+
+      <%= f.label      :subindex %>
+      <%= f.text_field :subindex %>
+
+      <%= f.label      :iform, "Index Formula" %>
+      <%= f.text_field :iform %>
+
+      <%= f.label      :word_form, "Word Formula" %>
+      <%= f.text_field :word_form %>
+
+      <%= f.label      :abbrev_form, "Abbreviation Formula" %>
+      <%= f.text_field :abbrev_form %>
+
+      <%= f.label      :alpha, "Alphabetic String" %>
+      <%= f.text_field :alpha %>
+
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <% end %>
+
+    <!-- %= gravatar_for @user % -->
+    <!-- a href="http://gravatar.com/emails">change</a -->
+  </div>
+</div
+

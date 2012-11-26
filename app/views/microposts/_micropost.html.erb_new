@@ -1,5 +1,0 @@
-
-<li>
-  <%= render 'shared/deletable_micropost', micropost: micropost %>
-</li>
-

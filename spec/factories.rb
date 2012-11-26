@@ -29,13 +29,13 @@ FactoryGirl.define do
   end
 
   factory :formula do
-    base         "035"
-    # sequence(:base)  { |n| "#{n}" }
-    offset       "031"
-    # sequence(:offset)  { |n| "#{100-n}" }
+    # base         "035"
+    sequence(:base)  { |n| "#{n}" }
+    # offset       "031"
+    sequence(:offset)  { |n| "#{100-n}" }
     subindex     "0"
-    iform        "35.1 / 68.1"
-    # sequence(:name_word)  { |n| "word#{n}" }
+    # iform        "35.1 / 68.1"
+    sequence(:iform)  { |n| "#{100-n}.#{n} / #{n}.#{100-n}" }
     word_form    "knife / mouth"
     abbrev_form  "K / M"
     alpha        "KOM"

@@ -5,19 +5,19 @@ class FormulasController < ApplicationController
   before_filter :admin_user,     only: [:new, :create,         :edit, :update, :destroy]
 
   def show
-    @Formula = Formula.find(params[:id])
+    @formula = Formula.find(params[:id])
   end
 
   def new
-    @Formula = Formula.new
+    @formula = Formula.new
   end
 
   def create 
-    @Formula = Formula.new(params[:Formula])
-    if @Formula.save
+    @formula = Formula.new(params[:formula])
+    if @formula.save
       flash[:success] = "Thank you for the new formula information!"
       # flash[:success] = "Well to the Char App!"
-      redirect_to @Formula
+      redirect_to @formula
     else
       # render 'add'
       render 'new'
@@ -25,29 +25,29 @@ class FormulasController < ApplicationController
   end
 
   def edit
-    @Formula = Formula.find(params[:id])
+    @formula = Formula.find(params[:id])
   end
 
   def update
-    @Formula = Formula.find(params[:id])
-    if @Formula.update_attributes(params[:Formula])
+    @formula = Formula.find(params[:id])
+    if @formula.update_attributes(params[:formula])
       # Handle a successful update.
       flash[:success] = "Formula data updated"
-      redirect_to @Formula
+      redirect_to @formula
     else
       render 'edit'
     end
   end
 
   def index
-    # @Formulas = Formula.all
-    @Formulas = Formula.paginate(page: params[:page])
+    # @formulas = Formula.all
+    @formulas = Formula.paginate(page: params[:page])
   end
 
   def destroy
     Formula.find(params[:id]).destroy
     flash[:success] = "Entry destroyed."
-    redirect_to Formulas_url
+    redirect_to formulas_url
   end
 
   private

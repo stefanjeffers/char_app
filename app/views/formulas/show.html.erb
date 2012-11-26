@@ -1,6 +1,5 @@
 <% provide(:title, @formula.alpha ) %>
 
-
 <div class="row">
   <aside class="span4">
     <section>
@@ -57,7 +56,7 @@
         <ul class="nav pull-right">
           <% if signed_in? %>
             <li><%= link_to "Update Formulas", edit_formula_path( @formula ) %></li>
-            <li><%= link_to "Add Formula Data", new_formula_path %></li>
+            <!--li><%= link_to "Add Formula Data", new_formula_path %></li-->
             <!-- Where, here? add a next link for next record, next in ID, or next in search results, etc? -->
           <% else %>
             <li><%= link_to "Sign in", signin_path %></li>

@@ -13,6 +13,7 @@ describe "Authentication" do
     it { should have_selector('title', text: 'Sign in') }
 
     # it { should_not have_link('Chars',    href: pinnames_path) }
+    # it { should_not have_link('Forms',    href: formulas_path) }
     it { should_not have_link('Users',    href: users_path ) }
     it { should_not have_link('Profile',  href: user_path( user )) }
     it { should_not have_link('Settings', href: edit_user_path( user )) }
@@ -48,6 +49,7 @@ describe "Authentication" do
       it { should have_selector('title', text: user.name) }
 
       it { should have_link('Chars',    href: pinnames_path) }
+      it { should have_link('Forms',    href: formulas_path) }
       it { should have_link('Users',    href: users_path) }
       it { should have_link('Profile',  href: user_path(user)) }
       it { should have_link('Settings', href: edit_user_path(user)) }
@@ -67,6 +69,7 @@ describe "Authentication" do
     describe "for non-signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
       let(:pinname) { FactoryGirl.create(:pinname) }
+      let(:formula) { FactoryGirl.create(:formula) }
 
       describe "when attempting to visit a protected page" do
         before do
@@ -168,6 +171,24 @@ describe "Authentication" do
           it { should have_selector('title', text: 'Sign in') }
         end
       end
+
+      describe "in the formulas controller" do
+
+        describe "visiting the formula edit page" do
+          before { visit edit_formula_path(formula) }
+          it { should have_selector('title', text: 'Sign in') }
+        end
+
+        describe "submitting to the formula update action" do
+          before { put formula_path(formula) }
+          specify { response.should redirect_to(signin_path) }
+        end
+
+        describe "visiting the formula index" do
+          before { visit formulas_path }
+          it { should have_selector('title', text: 'Sign in') }
+        end
+      end
     end  # describe "for non-signed-in users"
 
     describe "for signed-in users," do
@@ -205,6 +226,7 @@ describe "Authentication" do
       let(:user)      { FactoryGirl.create(:user) }
       let(:non_admin) { FactoryGirl.create(:user) }
       let(:pinname)   { FactoryGirl.create(:pinname) }
+      let(:formula)   { FactoryGirl.create(:formula) }
 
       before { sign_in non_admin }
 

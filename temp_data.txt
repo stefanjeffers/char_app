@@ -1,0 +1,14 @@
+078, 014, '_', 1, '78.1 * 96.1', 'Door-leaf * axe', 'DL * A', "D-LA-A"
+
+094, 001, '_', 3, '94.1', '{"plow"}', 'S', "S"
+
+094, 001, '_', 1, '94.1', '{"two boats tied together"}', 'S', "S"
+
+158, 001, '_', 7, '( 158.0.a / 147.0 / 158.0.a ) + 158.0.b', '( Wheel / body / wheel ) + axle', '( W / B / W ) + A', "WOBOWIA"
+158, 001, '_', 5, '( 158.0.a ):^2 /\ 147.0 ) + 158.0.b', '( Wheel:^2 /\ body ) + axle', '( W:^2 /\ B ) + A', "WUTOUBIA"
+
+158, 001, '_', 11, '( 1.1.a / 68.46 / 1.1.a ) + 4.1', '( bar / say / bar ) + post', '( B / S / B ) + P', "BOSOBIP"
+
+173, 009, '_', 4, '( 66.2.a ) / (( 66.0 ):<.(( 176.0.b | 170.0 )::173.0.a )) / 27.1', 'Grass-at-top / ( Plant:<.(( leaves | fruit )::droop )) / ( breath::meet:>surface )', 'GAT / ( P:<.(( L | F )::D )) / ( B::M:>S )', "GATOPILOFADOBAMOS"
+
+

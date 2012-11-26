@@ -25,8 +25,8 @@ class Formula < ActiveRecord::Base
   # before_save { |pinname| pinname.name_word_abbrev = name_word_abbrev.upcase }
 
   VALID_INDEX_REGEX    = /\A\d{1,3}\z/
-  VALID_SUBINDEX_REGEX = /\A\[a-z0-9]\z/
-  VALID_ALPHA_REGEX    = /\A\[-'a-zA-Z]*\z/
+  VALID_SUBINDEX_REGEX = /\A[a-z0-9]\z/
+  VALID_ALPHA_REGEX    = /\A[-'a-zA-Z]*\z/
   # VALID_PINYIN_REGEX = /\A[A-Za-z]{1,6}[01234]\z/
 
   validates :base,             presence: true, length: { maximum: 3 }, format: { with: VALID_INDEX_REGEX }
