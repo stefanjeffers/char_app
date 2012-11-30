@@ -9,3 +9,7 @@ Error: near line 1516: near "NOW": syntax error
 Error: near line 1679: near "NOW": syntax error
 Error: near line 1838: near "NOW": syntax error
 
+Many errors caused in "formulas" load, because sed to catch and remove ord column data
+failed to catch case of two-digit ord. Must correct sed and recreate and reload data.
+
+

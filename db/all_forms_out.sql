@@ -1605,7 +1605,6 @@ insert into all_forms values( 090, 001, 'b', 1, 'Alt( 90.1 )', 'alt( fur )', 'A(
 insert into all_forms values( 090, 001, 'c', 4, '( 85.1 :+ 40.1 ) / 2', '( Python :+ recliner ) / 2', 'P :+ R ) / 2', "PIROT", '090.001.c', '090.001.c.4');
 insert into all_forms values( 090, 001, 'c', 5, ' 85.1 # 40.1', 'Python # recliner', 'P # R', "POLAR", '090.001.c', '090.001.c.5');
 insert into all_forms values( 090, 001, 'c', 1, '90.1.c', '{"hair"}', 'EB', "EB", '090.001.c', '090.001.c.1');
-insert into all_forms values( 090, 001, 'c', 3, 'Av( 85.1, 40.1 )', 'av( python, recliner )', 'AV( P, R )', "AVOPAR", '090.001.c', '090.001.c.3');
 insert into all_forms values( 090, 001, 'c', 2, 'Top( 85.1 ) / base( 40.1 )', 'Top( python ) / base( recliner )', 'T( P ) / B( R )', "TOPOBOR", '090.001.c', '090.001.c.2');
 insert into all_forms values( 090, 002, '_', 2, '(( 22.13 / 11.35 |*|/ 13.1 ) * 49.1 ) / 90.1', '( ((flee | die) / table |*|/ flip ) * fine-lines  ) / fur', '(( FOD / T |*|/ F ) * L:F  ) / F', "FODOTEOF-ALIFOF", '090.002._', '090.002._.2');
 insert into all_forms values( 090, 002, '_', 1, '22.59 / 90.1', 'Long-hair / fur', 'LH / F', "LHOF", '090.002._', '090.002._.1');
@@ -3088,7 +3087,7 @@ insert into all_forms values( 158, 001, '_', 5, '( 158.0.a ):^2 /\ 147.0 ) + 158
 insert into all_forms values( 158, 001, '_', 7, '( 158.0.a / 147.0 / 158.0.a ) + 158.0.b', '( Wheel / body / wheel ) + axle', '( W / B / W ) + A', "WOBOWIA", '158.001._', '158.001._.7');
 insert into all_forms values( 158, 001, '_', 3, '( stack( 158.0.a ) /\ 147.0 ) + 158.0.b', '( stack( wheel ) /\ body ) + axle', '( S( W ) /\ B ) + A', "SOWOUBIA", '158.001._', '158.001._.3');
 insert into all_forms values( 158, 001, '_', 9, '( stack( 1.1.a ) /\ 68.46 ) + 4.1', '( stack( bar ) /\ say ) + post', '( S( B ) /\ S  ) + P', "SOWOUBIA", '158.001._', '158.001._.9');
-insert into all_forms values( 158, 001, '_', 1, '158.1', '{ "chariot viewed from above, with wheels top and bottom" }', 'C', "C", '158.001._', '158.001._.1');
+insert into all_forms values( 158, 001, '_', 1, '158.1', '{ "chariot viewed from above with wheels top and bottom" }', 'C', "C", '158.001._', '158.001._.1');
 insert into all_forms values( 158, 001, 's', 15, '1.2 + 158.0.c', 'two + four', 'T + F', "TIF", '158.001.s', '158.001.s.15');
 insert into all_forms values( 158, 002, '_', 3, '( 18.1->24.1 ) / 158.1', '( Person-at-top->cover ) / cart', '( PAT->C ) / C', "PATYCOC", '158.002._', '158.002._.3');
 insert into all_forms values( 158, 002, '_', 6, '( 18.1->24.1 ) / 158.1', '( Person-at-top->cover ) / vehicle', '( PAT->C ) / V', "PATYCOV", '158.002._', '158.002._.6');

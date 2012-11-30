@@ -1,0 +1,29 @@
+A: insert into pinnames values( 001, 046, '_', 3, 'shi4', 'show', 'R', 'noun', '001.046._', '001.046._.3');
+
+B: Pinname.create( :base => '001', :offset => '046', :sub_index => '_', :ord => '3', :pinyin => 'shi4', :name_word => 'show', :name_word_abbrev => 'R', part_of_speech => 'noun');
+
+Algorithm to change form A into form B:
+_______________________________________
+
+* Delete last two fields:  sed "s/,[ 'a-z0-9_.]*,[ 'a-z0-9_.]*);/);/" < $1 > removed_fields_out.sql
+* No, Leave it: Delete forth field (ord). (remember, may be 1 or 2 digits):   sed "s/ [0-9]{1,2},//"
+
+* Change "insert into pinnames values" into "Pinname.create": 
+       sed "s/insert into pinnames values/Pinname.create/" < removed_fields_out.sql > temp1.sql
+
+* Change 3rd field:    sed "s/'_'/'0'/"
+
+* Augment 1st field:   sed "s/( /( :base => '/"         (note: added quote )
+* Augment 2nd field:   sed "s/, /'@ :offset => '/"      (note: added quote, and changed comma into a distinct char)
+* Augment 3rd field:   sed "s/, /'@ :subindex => /"        (etc)
+* Augment 4th field:   sed "s/, /@ :ord => '/"              (etc)
+* Augment 5th field:   sed "s/, /'@ :pinyin => /"           (etc)
+* Augment 6th field:   sed "s/, /@ :name_word => /"        (etc, but no added quotes)
+* Augment 7th field:   sed "s/, /@ :name_word_abbrev => /" (etc, but no added quotes)
+* Augment 8th field:   sed "s/, /@ :part_of_speech => /"   (etc, but no added quotes)
+
+* Restore "@" to ",":  sed "s/@/,/g"
+
+* Correct spelling for subindex:  sed "s/sub_index/subindex/"
+
+
