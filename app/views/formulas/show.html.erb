@@ -11,39 +11,44 @@
   </aside>
 </div>
 
-<table  align="center" cellpadding="0" border=10 bordercolor=lightblue cellspacing="0" width="50%">
+<table  align="center" cellpadding="0" border=10 bordercolor=lightblue cellspacing="0" width="75%">
   <tr align="center">
-    <th width="50" border=10 bordercolor=gray >
+    <th width="100" border=10 bordercolor=gray >
       Index
     </th>
-    <th width="50" border=10 bordercolor=gray >
-      Index Formula
+    <th width="300" border=10 bordercolor=gray >
+      <%= @formula.base %>.<%= @formula.offset %>.<%= @formula.subindex %> 
     </th>
-    <th width="50" border=10 bordercolor=gray >
-      Word Formula
-    </th>
-    <th width="50" border=10 bordercolor=gray >
-      Abbreviation Formula
-    </th>
-    <th width="50" border=10 bordercolor=gray >
-      Alphabetic Form
-    </th>
-
   </tr>
   <tr align="center">
-    <td>
-      <%= @formula.base %>.<%= @formula.offset %> 
+    <td width="75" border=10 bordercolor=gray >
+      Index Formula
     </td>
-    <td>
+    <td width="300" border=10 bordercolor=gray >
       <%= @formula.iform %>
     </td>
-    <td>
+  </tr>
+  <tr align="center">
+    <td width="75" border=10 bordercolor=gray >
+      Word Formula
+    </td>
+    <td width="300" border=10 bordercolor=gray >
       <%= @formula.word_form %>
     </td>
-    <td>
+  </tr>
+  <tr align="center">
+    <td width="75" border=10 bordercolor=gray >
+      Abbreviation Formula
+    </td>
+    <td width="300" border=10 bordercolor=gray >
        <%= @formula.abbrev_form %>
     </td>
-    <td>
+  </tr>
+  <tr align="center">
+    <td width="75" border=10 bordercolor=gray >
+      Alphabetic Form
+    </td>
+    <td width="300" border=10 bordercolor=gray >
        <%= @formula.alpha %>
     </td>
   </tr>

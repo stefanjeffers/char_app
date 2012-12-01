@@ -1,0 +1,41 @@
+A: insert into all_forms values( 001, 046, '_', 3, 'shi4', 'show', 'R', 'noun', '001.046._', '001.046._.3');
+
+B: Formula.create( :base => '001', :offset => '046', :sub_index => '0', :ord => '3', :iform => '1.1.b / ( 69.1 [] 69.1.a ) / 1.1.b', :word_form => 'surface / ( Square [] swirl ) / ground', :abbrev_form => 'S / ( S [] S ) / G', :alpha => 'SOSESOG');
+
+Algorithm to change form A into form B:
+_______________________________________
+
+* Delete last two fields:  sed "s/,[ 'a-z0-9_.]*,[ 'a-z0-9_.]*);/);/" < $1 > removed_fields_out.sql
+
+* No, Leave it: Delete forth field (ord). (remember, may be 1 or 2 digits):   sed "s/ [0-9]{1,2},//"
+
+* Change "insert into all_forms values" into "Formula.create": 
+       sed "s/insert into all_forms values/Formula.create/" < removed_fields_out.sql > temp1.sql
+
+* Change 3rd field:    sed "s/'_'/'0'/"
+
+NB: Last field below has double-quotes in formulas, not single quotes as pinnames did
+     (but no problem, only looking for comma followed by space).
+
+* Augment 1st field:   sed "s/( /( :base => '/"         (note: added quote )
+* Augment 2nd field:   sed "s/, /'@ :offset => '/"      (note: added quote, and changed comma into a distinct char)
+* Augment 3rd field:   sed "s/, /'@ :subindex => /"        (etc)
+* Augment 4th field:   sed "s/, /@ :ord => '/"             (etc)
+* Augment 5th field:   sed "s/, /'@ :iform => /"           (etc)
+* Augment 6th field:   sed "s/, /@ :word_form => /"        (etc, but no added quotes)
+* Augment 7th field:   sed "s/, /@ :abbrev_form => /"      (etc, but no added quotes)
+* Augment 8th field:   sed "s/, /@ :alpha => /"            (etc, but no added quotes)
+
+* Restore "@" to ",":  sed "s/@/,/g"
+
+    NB: Must correct these now in spreadsheet:
+
+* One off: Correct spelling for subindex:  sed "s/sub_index/subindex/"
+* One off: Delete line which had comma in formula:    sed "/av( python, recliner )/d" < all_forms_out.sql > temp.sql
+* One off: Correct line which had comma in formula:   sed "s/chariot viewed from above, with wheels top and bottom/chariot viewed from above with wheels top and bottom/"
+
+
+
+
+
+

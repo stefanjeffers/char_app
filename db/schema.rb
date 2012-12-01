@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121123090501) do
+ActiveRecord::Schema.define(:version => 20121201095645) do
 
   create_table "formulas", :force => true do |t|
     t.string   "base"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20121123090501) do
     t.string   "alpha"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "ord"
   end
 
   add_index "formulas", ["abbrev_form"], :name => "index_formulas_on_abbrev_form"
