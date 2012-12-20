@@ -1,9 +1,10 @@
 class PinnamesController < ApplicationController
   before_filter :signed_in_user, only: [:new, :create, :index, :edit, :update, :destroy]
-  before_filter :admin_user,     only: [:new, :create,         :edit, :update, :destroy]
+  before_filter :admin_user,     only: [:new, :create,         :edit, :update, :destroy, :formulas_for ]
 
   def show
     @pinname = Pinname.find(params[:id])
+    @formulas = @pinname.formulas
   end
 
   def new
@@ -48,6 +49,13 @@ class PinnamesController < ApplicationController
     redirect_to pinnames_url
   end
 
+  def formulas_for
+    @title = "Formulas for current name"
+    @pinname = Pinname.find(params[:id])
+    @formulas = @pinname.formulas
+    render 'show_linked_to'
+  end
+
   private
 
     def signed_in_user
@@ -55,6 +63,7 @@ class PinnamesController < ApplicationController
         store_location
         redirect_to signin_url, notice: "Please sign in."
       end
+
     end
 
     def admin_user

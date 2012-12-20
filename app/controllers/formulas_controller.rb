@@ -2,10 +2,16 @@ class FormulasController < ApplicationController
     # Note: Will will not want all signed in users to be able to new/create/edit/update/destroy. Only show/index.
     # Only admin can do all of these. Same for pinnames controller.
   before_filter :signed_in_user, only: [:new, :create, :index, :edit, :update, :destroy]
-  before_filter :admin_user,     only: [:new, :create,         :edit, :update, :destroy]
+  before_filter :admin_user,     only: [:new, :create,         :edit, :update, :destroy, :pinnames_for ]
 
   def show
     @formula = Formula.find(params[:id])
+    
+    # base     = @formula.base
+    # offset   = @formula.offset
+    # subindex = @formula.subindex
+    # graph_id = @formula.graph_id
+    # @pinname = Pinname.find_by_
   end
 
   def new
@@ -48,6 +54,13 @@ class FormulasController < ApplicationController
     Formula.find(params[:id]).destroy
     flash[:success] = "Entry destroyed."
     redirect_to formulas_url
+  end
+
+  def pinnames_for
+    @title    = "Names for current formulas"
+    @formula  = Formula.find(params[:id])
+    @pinnames = @formulas.pinnames
+    render 'show_linked_to'
   end
 
   private
