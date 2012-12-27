@@ -1,0 +1,21 @@
+<% provide(:title, @title) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+          <%= image_for @pinname %>
+          <%= @pinname.pinyin %>
+          <%= @pinname.name_word %>
+      </h1>                         
+    </section>
+  </aside>
+  <div class="span8">
+    <h3><%= @title %></h3>
+    <% if @formulas.any? %>
+      <ul class="formulas">
+        <%= render @formulas %>
+      </ul>
+    <% end %>
+  </div>
+</div>
+

@@ -6,6 +6,7 @@ namespace :db do
     # make_formulas
     make_microposts
     make_relationships
+    # make_links
   end
 end
 
@@ -94,6 +95,27 @@ def make_relationships
   followers      = users[5..42]  # etc.
   followed_users.each { |followed| user.follow!(followed) }
   followers.each      { |follower| follower.follow!(user) }
+end
+
+def make_links
+
+  pinnames = Pinname.all
+  formulas = Formula.all
+
+  pinname0 = pinnames[ 0 ]
+  pinname1 = pinnames[ 1 ]
+
+  formula0 = formulas[ 0 ]
+  formula1 = formulas[ 1 ]
+
+    # should not need to offset these, should allow the reciprocal link, as in "relationships"
+    # no, we don't need a reciprocal link. If create link from formula side, should only use forward link.
+    # do we really need it to be unique? Maybe just check existance before creation. How?
+  linking_formulas = formulas[ 0..4 ]
+  linking_pinnames = pinnames[ 0..4 ]
+
+  # linking_formulas.each { | formula | pinname0.link_to!( formula ); pinname1.link_to!( formula ) }
+  linking_pinnames.each { | pinname | formula0.link_to!( pinname ); formula1.link_to!( pinname ) } 
 end
 
 

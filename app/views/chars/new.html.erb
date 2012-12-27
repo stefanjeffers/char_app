@@ -1,10 +1,12 @@
-<% provide(:title, 'Create Char') %>
+
+<% provide(:title, 'Create pinname') %>
 <!--h1>Chars#new</h1-->
-<h1>Create Char</h1>
+<h1>Create pinname</h1>
 
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(@pinname) do |f| %>
+      <%= render 'shared/pinname_error_messages' %>
 
       <%= f.label      :base %>
       <%= f.text_field :base %>
@@ -15,17 +17,19 @@
       <%= f.label      :pinyin %>
       <%= f.text_field :pinyin %>
 
-      <%= f.label      :name_word %>
+      <%= f.label      :name_word, "Name Word" %>
       <%= f.text_field :name_word %>
 
-      <%= f.label      :name_word_abbrev %>
+      <%= f.label      :name_word_abbrev, "Abbreviation" %>
       <%= f.text_field :name_word_abbrev %>
 
-      <%= f.label      :part_of_speech %>
+      <%= f.label      :part_of_speech, "Part of Speech" %>
       <%= f.text_field :part_of_speech %>
 
       <%= f.submit "Create char", class: "btn btn-large btn-primary" %>
     <% end %>
+
   </div>
 </div>
+
 

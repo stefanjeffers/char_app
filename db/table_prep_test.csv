@@ -1,0 +1,71 @@
+001.001._		M	001	001	_	1	1	1	1	yi1	one	O	noun	1.1	one	O	O						"M:""mid-height"""	
+001.001.a		V	001	001	a	1	1	1	1	yi1	dash	D 	noun	1.1	one	O	O	bar	B				"M:""mid-height"""	
+001.001.b		V	001	001	b	1	1	1	1	yi1	surface	S	noun	1.1	one	O	O	ground	G		66.48	1	"M:""at bottom"""	
+001.001.b		V	001	001	b	2	1	1	2	yi1	surface	S	noun	1.1	one	O	O	horizon	H		76.42	1	"M:""at bottom"""	
+001.001.b		V	001	001	b	3	1	1	3	yi1	surface	S	noun	1.1	one	O	O	floor	F		76.42	1	"M:""at bottom"""	
+001.001.c		V	001	001	c	1	1	1	1	unk	dot	D	noun	1.1	"{""dot""}"	O	O				35.21	1		
+001.001.c		V	001	001	c	2	1	1	1	unk	dot	D	noun	1.1	"{""dot""}"	O	O	mineral	M		35.21	1		
+001.001.c		V	001	001	c	3	1	1	2	unk	dot	D	noun	1.1	"{""dot""}"	O	O	contents	C		35.21	1		
+001.001.c		V	001	001	c	4	2	2	1	unk	drop	D	noun	{ 161.0.a }	{ drop }	{ D }	D				159.4, 161.1	2		
+001.001.d		V	001	001	d	1	1	1	1	yi1	brightness	B	noun	1.1	one	O	O				23.61	1	"M:""at top"""	
+001.001.e		V	001	001	e	1	1	1	1	yi1	object	O	noun	1.1	one	O	O				24.2	1		
+001.001.f		V	001	001	f	1	1	1	1	unk	hairpin	HP	noun	1.1	one	O	O				39.9	1	"M:""at top"""	
+001.001.g		V	001	001	g	1	1	1	1	yi1	heaven	H	noun	1.1	one	O	O	top	T		39.35	1	"M:""at top"""	
+001.001.h		V	001	001	h	1	1	1	1	yi1	big-head	H	noun	1.1	one	O	O				39.35	1	"M:""at top"""	
+001.001.i		V	001	001	i	1	1	1	1	unk	Dash-hook	DH	noun	Alt( 1.1.a )	Alt( dash )	A( D )	DA	contact	C		44.2	1		
+001.001.i		V	001	001	i	2	2	1	2	unk	angle	A	noun	Alt( 1.1.a )	Alt( dash )	A( D )	DA	Angle-bar	AB		44.2	1		
+001.001.j		V	001	001	j	1	1	1	1	unk	Bar-barb	BB	noun	Alt( 1.1.a )	Alt( bar )	A( B )	AB	Bar-hook	BH		179.4	1		
+001.002._		M	001	002	_	1	1	1	1	er4	two	T	number	Stack( 1.1 )	stack( one )	S( O )	SO'O							
+001.015._		O	001	015	_	1	1	1	1	xuan1	Swirl-in-between	SIB	verb	1.1.b / ( 69.1 [] 69.1.a ) / 1.1.b	surface / ( Square [] swirl ) / ground	S / ( S [] S ) / G	SOSESOG				129.5.s	2		
+001.015._		O	001	015	_	2	1	2	1	xuan1	Swirl-in-between	SIB	verb	1.2 /\ ( 69.1 [] 69.1.a )	Two /\ ( Square [] swirl )	T /\ ( S [] S )	TO'USES				129.5.s	2		
+001.015._		O	001	015	_	3	1	3	1	xuan1	Swirl-in-between	SIB	verb	1.1.b / 76.1 / 1.1.b	surface / sun / ground	S / S / G	SOSOG				129.5.s	2		
+001.015._		O	001	015	_	4	1	4	1	xuan1	Swirl-in-between	SIB	verb	1.2 /\ 76.1	Two /\ sun	T /\ S	TO'US				129.5.s	2		
+001.019._		M	001	019	_	1	1	1	1	san1	three	T	number	1.1 / 1.2	One / two	O / T	O'OT							
+001.039._		M	001	039	_	1	1	1	1	qi1	seven	S	number		seven	S	S							
+001.043._		M	001	043	_	1	1	1	1	shang4	up	U			up	U	U							
+001.046._		O	001	046	_	1	1	1	1	shi4	revelation	R	noun	1.46	"{""object-on-slab-dripping-blood""}"	R	R					4+		
+001.046._		O	001	046	_	2	1	2	1	shi4	revelation	R	noun	1.43 / 1.19	Up / three	U / T	UOT					4+		
+001.046._		A	001	046	_	3	2	3	1	shi4	show	R	noun	1.2 / 29.8	Two / small	T / S	TOS					4+		
+001.046.a		M	001	046	a	1	1	1	1	shi4	Side-revelation	SR	noun	Dis( 1.46)	dis( revelation )	D( R )	DOR	Revelation-at-Side	RAS			many		
+001.068._		M	001	068	_	1	1	1	1	xia4	down	D			down	D	D							
+001.070._		M	001	070	_	1	1	1	1	bu4	no	N			climbing-bird	CB	CB	Bird-in-climb	BIC					
+001.070._		M	001	070	_	2	1	2	1	bu4	no	N			ascending-bird	AB	AB							
+001.070._		M	001	070	_	3	1	3	1	bu4	no	N			rising-bird	RB	RB							
+																								
+002.001._		O	002	001	_	1	1	1	1	chuan3	small-stream	SS	noun	2.1	small-stream	SS	SS		S					
+002.002._		O	002	002	_	1	1	1	1	kuai4	two-small-streams	DSS	noun	2.1**2	small-stream**2	SS**2	DSS							
+002.003._		M	002	003	_	1	1	1	1	chuan1	river	R	noun	2.1*2.2	small-stream*small-stream**2	SS*DSS	TSS							
+002.003.a		V	002	003	a	1	1	1	1	n/a	Bent-river	BR	noun	 ::( 135.0.a ):>2.3	::bend:>river	::B:>R	ABOR	River-is-bent	RIB					
+002.003.a		V	002	003	a	2	1	1	2	n/a	Bent-river	BR	noun	 ::( 135.0.a ):>2.3	::bend:>river	::B:>R	ABOR	bend-in-River	BIR					
+002.003.a		V	002	003	a	3	1	2	1	n/a	Bent-river	BR	noun	135.0.a ( 2.3 )	Bend( river )	B( R )	BOR	River-is-bent	RIB					
+002.003.a		V	002	003	a	4	1	2	2	n/a	Bent-river	BR	noun	135.0.a ( 2.3 )	Bend( river )	B( R )	BOR	bend-in-River	BIR					
+002.003.b		V	002	003	b	1	1	1	1	n/a	Hair-to-bent-river	HTBR	noun	( 90.0.a )->( ::( 135.0.a ):>2.3 )	hair->( ::bend:>river )	H->( ::B:>R )	HYABOR	Hair-as-river-is-bent	HARIB		143.2, 148.2	2		
+002.003.b		V	002	003	b	2	1	2	2	n/a	Hair-to-bent-river	HTBR	noun	( 90.0 )->( ::( 135.0.a ):>2.3 )	fur->( ::bend:>river )	F->( ::B:>R )	FYABOR	Fur-yield-bend-in-river	FYBIR		143.2, 148.2	2	"M: ""sounds like 'fiber"""""	
+002.021._		M	002	021	_	1	1	1	1	shui3	water	W	noun	2.1**3	small-stream**3	SS**3	TSS							
+002.021.a		O	002	021	a	1	1	1	1	shui3	side-water	SW	noun	alt(2.21)	alt(water)	alt(W)	WA	water	W					
+002.021.a		O	002	021	a	2	1	2	2	shui3	side-water	SW	noun	At-side(2.21)	At-side(water)	AS(W)	ASW	Water-at-side	WAS					
+002.021.a		O	002	021	a	3	1	3	2	shui3	side-water	SW	noun	At-side(2.21)	At-side(water)	W |<-	ASW	Water-at-side	WAS					
+002.021.b		O	002	021	b	1	1	1	1	unk	Water-in-valley	WIV	noun	alt(2.21)	alt(water)	alt(W)	WA	water	W		68.106	1		
+002.021.c		O	002	021	c	1	1	1	1	unk	Water-in-ravine	WIR	noun	alt(2.21)	alt(water)	alt(W)	WA	water	W		68.118	1		
+																								
+003.000.b		V,A	003	000	b	1	1	1	1	n/a	fall	F	verb	3.0.b	"abstract( ""falling motion"" )"	A( FM )	AFM							
+003.000.c		V,A	003	000	c	1	1	1	1	n/a	left	L	adverb	3.0.c	"abstract( ""left direction"" )"	A( LD )	ALD							
+003.000.d		V,A	003	000	d	1	1	1	1	n/a	right	R	adverb	3.0.d	"abstract( ""right direction"" )"	A( RD )	ARD							
+003.001._		O	003	001	_	1	1	1	1	pie3	Falling-left	FL	verb	3.1	"{""Falling-line""}"	FL	FL	Fall-is-left	FIL					
+003.001._		O	003	001	_	2	1	1	2	pie3	Falling-left	FL	verb	3.1	"{""Falling-line""}"	FL	FL	fall	F					
+003.001._		O	003	001	_	3	1	2	1	pie3	Falling-left	FL	verb	::( 3.0.b ):( 3.0.c )	::fall:left	::F:L	AFIL	Fall-is-left	FIL					
+003.001.a		O	003	001	a	1	1	1	1	unk	Falling-right	FR	verb	rev( 3.1)	rev( falling-left )	R(FL)	RFL	Fall-is-right	FIR					
+003.001.a		O	003	001	a	2	2	2	1	unk	Descend-yield-right	DYR	verb	rev( 3.1)	rev( falling-left )	R(FL)	ROFL	Fall-is-right	FIR					
+003.001.b		O	003	001	b	1	1	1	1	unk	descend-yield-right-is-barbed	DYRIB	verb	Dis( 3.1.a )	dis( Falling-right )	R( FR )	ROFR	Fall-is-right-barbed	FIRB		181.1	1		
+003.002._		M	003	002	_	1	1	1	1	yi4	mow	M	verb	3.2	mow	M	M							
+003.002._		M	003	002	_	2	1	2	1	yi4	mow	M	verb	3.1 + 3.0.a	Falling-left + rev( falling-left)	FL + RFL	FLIRFL							
+003.002._		M	003	002	_	3	1	3	1	yi4	mow	M	verb	3.1 + 3.0.a	Falling-left + falling-right	FL + FR	FLIFR							
+003.022._		A	003	022	_	1	1	1	1	wang3	net	N	noun	24.1 {}/ 3.2^2	Cover {}/ mow^2	C [}/ M^2	CEOMUT					14		
+003.022.a		M	003	022	a	1	1	1	1	wang3	net	N	noun	3.22->114.1.0	net->eye	N->E	NYE	Net-at-top	NAT			11		
+																								
+004.000._		V,A	004	000	_	1	1	1	1	unk	strip	S	noun	4.0	"abstract( ""strip"" )"	S	S				115.1	1		
+004.000.g		V,A	004	000	g	1	1	1	1	unk	string	S	noun	4.0.g	"abstract( ""string"" )"	S	S				4.1.g	1		
+004.001._		O	004	001	_	1	1	1	1	gen3	post	P	noun	4.1	post	P	P							
+004.001.a		O	004	001	a	1	1	1	1	unk	pen	P	noun	4.1	post	P	P				14.14			
+004.001.b		O	004	001	b	1	1	1	1	unk	object	O	noun	4.1	post	O	O							
+

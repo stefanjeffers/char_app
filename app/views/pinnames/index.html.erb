@@ -1,9 +1,9 @@
-<% provide(:title, 'All Chars') %>
-<h1>All Chars</h1>
+<% provide(:title, 'All Names') %>
+<h1>All Pinnames</h1>
 
 <%= will_paginate %>
 
-<ul class="pinnames">
+<ol class="pinnames">
   <!--% @pinnames.each do |pinname| %
 -->
     <!--li-->
@@ -11,6 +11,6 @@
       <%= render @pinnames %>
     <!--/li-->
   <!--% end %-->
-</ul>
+</ol>
 
 <%= will_paginate %>

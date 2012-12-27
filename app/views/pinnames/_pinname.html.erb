@@ -1,14 +1,14 @@
 <li>
       <!--%= image_for pinname %-->
-      <%= pinname.base %>.<%= pinname.offset %> |
-      <%= pinname.pinyin %> |
-      <%= link_to pinname.name_word, pinname %>
 
       <!-- % if current_user.admin? && !current_user?(user) % -->
       <% if current_user.admin? %>
         | <%= link_to "delete", pinname, method: :delete,
-                                  data: { confirm: "Are you sure?" } %>
+                                  data: { confirm: "Are you sure?" } %> ||
       <% end %>
+      <%= pinname.base %>.<%= pinname.offset %>.<%= pinname.subindex %> |
+      <%= pinname.pinyin %> |
+      <%= link_to pinname.name_word, pinname %>
 
 </li>
 

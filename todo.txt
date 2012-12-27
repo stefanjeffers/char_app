@@ -1,9 +1,37 @@
-correct spreadsheet for three errors: (two formulas had commas, change field name to "subindex")
 
-add migration to put ord in formulas table.
+DONE:	add migration to put ord in formulas table.
 
-update pinname and formula forms to include ord (and update tests).
+DONE:	update pinname and formula forms to include ord
 
-change formula page layout to transpose rows and columns (and check tests).
+	(update tests).
 
+DONE:   change formula page layout to transpose rows and columns
 
+	check tests for that (now doesn't seem to matter).
+
+DONE:   need to reload the formula data, since we have added the ord column.
+
+DONE:   No: must first recreate it and sort/uniq it (without ord col).
+DONE:   And add or restore graph_id column (substitute '0' for '_'?)
+
+DONE:   want to keep the graph_id column in both pinnames and formulas.
+
+	add tests for that.
+
+DONE:   prepare a file with both pinnames and formulas, so "un-uniq-ed".
+
+DONE:   Maybe go back to spreadsheet version, and add a separate ord col for both pinnames and formulas, and maybe others?
+
+        correct spreadsheet for errors: two formulas had commas
+DONE:   correct spreadsheet for errors: change field name to "subindex"
+
+N/A:	Must fill in ids in link table. How?
+	No: remember algo:
+DONE:	output ids and ords from pinnames join formulas,
+DONE:	create alternate superset link table.
+	(but, NB, we used rake db:seeds on pinnames alone, and got ID offset.
+	Must repeat with whole reset to get the ID's set correctly,
+		before fill in link table.
+	Then, must winnow down to match true links.
+
+ 	

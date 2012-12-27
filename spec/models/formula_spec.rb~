@@ -1,0 +1,283 @@
+# == Schema Information
+#
+# Table name: pinnames
+#
+#  id               :integer          not null, primary key
+#  base             :string(255)
+#  offset           :string(255)
+#  subindex         :string(255)
+#  ord              :string(255)
+
+#  ...
+
+#  graph_id         :string(255)
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+
+require 'spec_helper'
+
+describe Formula do
+
+  before { @formula = Formula.new( base: "122", offset: "2", subindex: "0",
+				   iform: "( 66.2.a ) / (( 66.0 ):<.(( 176.0.b | 170.0 )::173.0.a )) / 27.1",
+				   word_form: "Grass-at-top / ( Plant:<.(( leaves | fruit )::droop )) / ( breath::meet:>surface )",
+				   abbrev_form: "GAT / ( P:<.(( L | F )::D )) / ( B::M:>S )",
+				   alpha: "GATO-PILO-FADO-BAMOS",
+                                   graph_id: "000") }
+
+  subject { @formula }
+
+  it { should respond_to(:base) }
+  it { should respond_to(:offset) }
+  it { should respond_to(:subindex) }
+  it { should respond_to(:iform) }
+  it { should respond_to(:word_form) }
+  it { should respond_to(:abbrev_form) }
+  it { should respond_to(:alpha) }
+  it { should respond_to(:graph_id) }
+
+  it { should respond_to(:reverse_links) }
+  it { should respond_to(:pinnames) }
+
+  it { should respond_to(:linked_to?) }
+  it { should respond_to(:link_to!) }
+  it { should respond_to(:unlink!) }
+
+#___________________________________________________
+# Test base:
+  
+  describe "when base is not present" do
+    before { @formula.base = " " }
+    it { should_not be_valid }
+  end
+
+  describe "when base is too long" do
+    before { @formula.base = "1" * 4 }
+    it { should_not be_valid }
+  end
+
+  describe "when base format is invalid" do
+    it "should be invalid" do
+      bases = %w[ a abc 1234 123a 00A ]
+      bases.each do |invalid_base|
+        @formula.base = invalid_base
+
+        # @formula.save
+        # @formula.reload
+
+        @formula.should_not be_valid
+      end
+    end
+  end
+
+  describe "when base format is valid" do
+    it "should be valid" do
+      bases = %w[ 0 000 01 001 1 111 123 99 999 ]
+      bases.each do |valid_base|
+        @formula.base = valid_base
+
+        # @formula.save
+        # @formula.reload
+
+        @formula.should be_valid
+      end
+    end
+  end
+
+#___________________________________________________
+# Test offset:
+  
+  describe "when offset is not present" do
+    before { @formula.offset = " " }
+    it { should_not be_valid }
+  end
+
+  describe "when offset is too long" do
+    before { @formula.offset = "1" * 4 }
+    it { should_not be_valid }
+  end
+
+  describe "when offset format is invalid" do
+    it "should be invalid" do
+      offsets = %w[ a abc 1234 123a 00A ]
+      offsets.each do |invalid_offset|
+        @formula.offset = invalid_offset
+
+        # @formula.save
+        # @formula.reload
+
+        @formula.should_not be_valid
+      end
+    end
+  end
+
+  describe "when offset format is valid" do
+    it "should be valid" do
+      offsets = %w[ 0 000 01 001 1 111 123 99 999 ]
+      offsets.each do |valid_offset|
+        @formula.offset = valid_offset
+
+        # @formula.save
+        # @formula.reload
+
+        @formula.should be_valid
+      end
+    end
+  end
+
+#___________________________________________________
+# Test abbrev_form:
+  
+  describe "when abbrev_form is not present" do
+    before { @formula.abbrev_form = " " }
+    it { should_not be_valid }
+  end
+
+  describe "when name_word_abbrev is too long" do
+    before { @formula.name_word_abbrev = "A" * 11 }
+    it { should_not be_valid }
+  end
+
+  describe "name_word_abbrev with mixed case" do
+    let(:mixed_case_name_word_abbrev) { "TIggER" }
+
+    it "should be saved as all upper-case" do
+      @formula.name_word_abbrev = mixed_case_name_word_abbrev
+
+      # puts @formula.pinyin, @formula.name_word_abbrev 
+
+      @formula.save
+      @formula.reload.name_word_abbrev.should == mixed_case_name_word_abbrev.upcase
+
+      # puts @formula.pinyin, @formula.name_word_abbrev
+
+    end
+  end
+
+#___________________________________________________
+# Test pinyin:
+
+  describe "when pinyin format is invalid" do
+    it "should be invalid" do
+      pinyins = %w[ a a11 a00 111 nian nian5 shuang shang22 schuang schuang1 ]
+      pinyins.each do |invalid_pinyin|
+        @formula.pinyin = invalid_pinyin
+
+        # puts @formula.pinyin
+
+        # @formula.save
+        # @formula.reload
+
+        @formula.should_not be_valid
+      end
+    end
+  end
+
+  describe "when pinyin is not present" do
+    before { @formula.pinyin = " " }
+    it { should_not be_valid }
+  end
+
+  describe "when pinyin is too long" do
+    before { @formula.pinyin = "aaaaaaa1" }
+    it { should_not be_valid }
+  end
+  
+  describe "when pinyin is too short" do
+    before { @formula.pinyin = "a" }
+    it { should_not be_valid }
+  end
+
+         # later, tighten validations so only correct letters are allowed:
+  describe "when pinyin format is valid" do
+    it "should be valid" do
+      pinyins = %w[ a1 a0 aa2 xxx3 xxxx4 shuang1 xhuang0 xxxxxx1 ]
+      pinyins.each do |valid_pinyin|
+        @formula.pinyin = valid_pinyin
+
+        # @formula.save
+        # @formula.reload
+
+        @formula.should be_valid
+      end
+    end
+  end
+
+#  before { @formula = Formula.new( base: "122", offset: "2",
+#                                    pinyin: "hu3", name_word: "tiger", name_word_abbrev: "T",
+#                                    part_of_speech: "noun", graph_id: "000") }
+
+# 1: If I comment out this one reload line, the error goes away.
+# 2: This sequence works fine for the case of the other field, name_word_abbrev,
+#      as well in the Users test. 
+# 3: These operation (well, save, anyway) work fine using the rails console (after some point).
+#      although before that point they didn't. What changed there?
+# 4: 
+  
+  describe "pinyin with mixed case" do
+    let(:mixed_case_pinyin) { "Shuang4" }
+
+    it "should be saved as all lower-case" do
+      @formula.pinyin = mixed_case_pinyin
+
+      # puts @formula.pinyin
+
+      @formula.save
+      @formula.reload
+      @formula.pinyin.should == mixed_case_pinyin.downcase
+      # @formula.reload.pinyin.should == mixed_case_pinyin.downcase
+    end
+  end
+
+#___________________________________________________
+# Test name_word:
+  
+  describe "when name_word is not present" do
+    before { @formula.name_word = " " }
+    it { should_not be_valid }
+  end
+
+  describe "when name_word is too long" do
+    before { @formula.name_word = "a" * 31 }
+    it { should_not be_valid }
+  end
+
+#___________________________________________________
+# Test part_of_speech:
+  
+  describe "when part_of_speech is not present" do
+    before { @formula.part_of_speech = " " }
+    it { should_not be_valid }
+  end
+
+  describe "when part_of_speech is too long" do
+    before { @formula.part_of_speech = "a" * 13 }
+    it { should_not be_valid }
+  end
+
+#___________________________________________________
+# Test link to formulas:
+
+  describe "linking to formulas" do
+    let(:formula) { FactoryGirl.create(:formula) }    
+    before do
+      @formula.save
+      @formula.link_to!( formula )
+    end
+
+    it { should be_linked_to(formula) }
+    its(:formulas) { should include(formula) }
+
+    describe "and unlinking" do
+      before { @formula.unlink!(formula) }
+
+      it { should_not be_linked_to(formula) }
+      its(:formulas) { should_not include(formula) }
+    end
+  end
+
+#___________________________________________________
+  
+end
+

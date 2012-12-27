@@ -1,0 +1,12 @@
+      correct spreadsheet for three errors: (two formulas had commas, change field name to "subindex")
+
+DONE: add migration to put ord in formulas table.
+
+      update pinname and formula forms to include ord (and update tests).
+
+DONE: change formula page layout to transpose rows and columns
+
+      check tests for that.
+
+      need to reload the formula data, since we have added the ord column.
+

@@ -39,6 +39,9 @@ class PinnamesController < ApplicationController
   end
 
   def index
+    # @results = Pinname.search(params[:search])
+    # @pinnames = Pinname.search_pinyin(params[:search])
+    # @formulas = @pinnames.formulas.search_alpha(params[:search])
     # @pinnames = Pinname.all
     @pinnames = Pinname.paginate(page: params[:page])
   end
@@ -54,6 +57,12 @@ class PinnamesController < ApplicationController
     @pinname = Pinname.find(params[:id])
     @formulas = @pinname.formulas
     render 'show_linked_to'
+  end
+
+  def search
+    # @results = Pinname.search(params[:search])
+    @pinnames = Pinname.search_pinyin(params[:search])
+    # @formulas = @pinnames.formulas.search_alpha(params[:search])
   end
 
   private

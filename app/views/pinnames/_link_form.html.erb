@@ -1,0 +1,10 @@
+<% unless current_pinname?(@pinname) %>
+  <div id="link_form">
+  <% if current_pinname.linked_to?(@formula) %>
+    <%= render 'unlink' %>
+  <% else %>
+    <%= render 'link' %>
+  <% end %>
+  </div>
+<% end %>
+

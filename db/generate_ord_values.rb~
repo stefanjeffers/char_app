@@ -1,0 +1,260 @@
+#!/usr/bin/env ruby
+
+# DONE: Need hash where key is pinname and value is formula_group.
+# N/A:	No: that won't work: Better is key is formula_group, value is pinname.
+# N/A:	But still not enough. Need multi-map?
+# DONE: Maybe: just keep an array of pinnames and an array of formulas.
+# DONE: Indices are resp. ords.
+# DONE: Just ask if includes, before append new one.
+
+# DONE: Read each line,
+# DONE: If new pinname (ie, not in list ), then inc pinname ord.
+# DONE: Output that with pinname record for seed file.
+# DONE: Do same for formulas.
+# DONE: For each line, append a record for relationship ( ie, graph_id with ord_pair )
+# N/A:		We can uniq that later? or do it at end?
+#		Will need to map those to table ids. How?
+# DONE: Reset list when new graph_id.
+
+	DEBUG = false
+
+	tab = TAB = "\t"
+
+	file_name = ARGV[0]
+
+	file_in	= File.new( file_name, "r")
+
+	p_out	= File.new( "proto_pinname_seeds.rb", "w")
+	f_out	= File.new( "proto_formula_seeds.rb", "w")
+	r_out	= File.new(    "proto_link_seeds.rb", "w")
+
+	line_no = 0
+
+	graph_id     = ""
+	old_graph_id = ""
+
+	pinname_id  = 0
+	formula_id  = 0
+	pinname_id_to_s  = pinname_id.to_s
+	formula_id_to_s  = formula_id.to_s
+
+	pinname_ord  = 0
+	formula_ord  = 0
+	nickname_ord = 0
+
+	# Formatting strings:
+	# Pinname.create( :base => '001', :offset => '001', :subindex => '0', :ord => '1',
+	#     :pinyin => 'yi1', :name_word => 'one', :name_word_abbrev => 'O', :part_of_speech => 'noun');
+	# Formula.create( :base => '001', :offset => '001', :subindex => '0', :ord => '1', 
+	#     :iform => '1.1', :word_form => 'one', :abbrev_form => 'O', :alpha => "O");
+
+	pinname_leader       = "Pinname.create("
+	formula_leader       = "Formula.create("
+	link_leader          = "Link.create("
+	trailer              = "' );"
+
+	graph_id_fmt         = " :graph_id => '"
+	base_fmt             = "', :base => '"
+	offset_fmt           = "', :offset => '"
+	subindex_fmt         = "', :subindex => '"
+	ord_fmt              = "', :ord => '"
+	pinname_id_fmt       = "', :pinname_id => '"
+	formula_id_fmt       = "', :formula_id => '"
+	pinname_ord_fmt      = "', :pinname_ord => '"
+	formula_ord_fmt      = "', :formula_ord => '"
+
+	pinyin_fmt           = "', :pinyin => '"
+	name_word_fmt        = "', :name_word => '"
+	name_word_abbrev_fmt = "', :name_word_abbrev => '"
+	part_of_speech_fmt   = "', :part_of_speech => '"
+
+	iform_fmt            = "', :iform => '"
+	word_form_fmt        = "', :word_form => '"
+	abbrev_form_fmt      = "', :abbrev_form => '"
+	alpha_fmt            = "', :alpha => '"
+
+	p_list	= Array.new( ) # pinname list ( per graph_id )
+	f_list	= Array.new( ) # formula list ( per same graph_id )
+	r_list	= Array.new( ) # relationship list
+
+	file_in.each_line { | raw_line |
+
+		# single_step  if DEBUG
+
+		whole_line = raw_line.chomp
+		if whole_line == nil
+			puts "whole line is nil, skipping"  if DEBUG
+			next
+		end
+
+		# fields = whole_line.split( TAB ).strip
+		fields = whole_line.split( TAB )
+
+			# Found that normal lines have between 18 and 23 fields: trailing tabs apparently dropped.
+		if fields.length < 18
+			puts whole_line  if DEBUG
+			puts "line has #{ fields.length} fields, skipping"  if DEBUG
+			next
+		end
+
+		puts "________________________" if DEBUG
+
+		line_no += 1
+		# puts line_no  if DEBUG
+		puts line_no
+
+		old_graph_id = graph_id
+
+		graph_id        = fields[0]
+
+		if graph_id == "0.0._"
+			puts "bad graph_id, skipping line"  if DEBUG
+			next
+		end
+
+		graph_id_out = graph_id.sub( /_/, '0')
+
+		puts "graph_id: " + graph_id  if DEBUG
+
+			# Reset lists when starting new graph_id group:
+		if ( graph_id != old_graph_id )
+			p_list.clear
+			f_list.clear
+
+			pinname_ord  = 0
+			formula_ord  = 0
+		end
+
+		# see
+		# stage
+
+		base            = fields[3]
+		# offset (index):
+
+		offset		= fields[4]
+
+			# map "_" to "0":
+		subindex        = fields[5]
+		subindex_out  = subindex.sub( /_/, '0')
+
+		puts "formatted: " + base + "." + offset + "." + subindex  if DEBUG
+		
+		# Ord
+		# Ord-pinname
+		# Ord-formula
+		# Ord-nickname
+
+                    # Re-concat in group pinnames:
+		pinname_group = fields[10..13].join( TAB )
+
+		# puts pinname_group 
+
+		pinyin           = fields[10]
+		name_word        = fields[11]
+		name_word_abbrev = fields[12]
+		part_of_speech   = fields[13]
+
+                    # Re-concat in group formulas:
+		formula_group = fields[14..17].join( TAB )
+
+		# puts formula_group
+
+		index_formula  = fields[14]
+		string_formula = fields[15]
+		abbrev_formula = fields[16]
+		alpha          = fields[17]
+		# alpha_out      = alpha.gsub( /\'/, '-' ).gsub( /\"/, '-' ) # Delete any double-quotes in field, map "'" to "-"
+		# alpha_out      = alpha.gsub( /\'/, '-' )
+		alpha_out      = alpha.gsub( "'", '-' ).gsub( '"', '-' ) # Delete any double-quotes in field, map "'" to "-"
+
+                    # Re-concat in group nicknames:
+		nickname_group = fields[18..19].join( TAB )
+
+		# puts nickname_group
+
+		nickname        = fields[18]
+		abbrev_nickname = fields[19]
+
+		# era       = fields[20]
+		# used-by
+		# children
+		# mnemonics
+		# notes
+
+		if p_list.include? ( pinname_group )
+		then
+		else
+				# Only add to list when first seen:
+			p_list << pinname_group
+
+			pinname_ord = p_list.index( pinname_group ) + 1
+
+			# Pinname.create( :base => '001', :offset => '001', :subindex => '0', :ord => '1',
+			# :pinyin => 'yi1', :name_word => 'one', :name_word_abbrev => 'O', :part_of_speech => 'noun');
+
+			# pinname_seed = [ graph_id_out, base, offset, subindex_out, pinname_ord, pinname_group ].join( TAB )
+			pinname_seed =  pinname_leader +
+					graph_id_fmt         + graph_id_out +
+					base_fmt             + base +
+					offset_fmt           + offset +
+					subindex_fmt         + subindex_out +
+					ord_fmt              + pinname_ord.to_s +
+					pinyin_fmt           + pinyin +
+					name_word_fmt        + name_word +
+					name_word_abbrev_fmt + name_word_abbrev +
+					part_of_speech_fmt   + part_of_speech +
+					trailer
+
+			p_out.puts pinname_seed
+			puts "pinname seed: " + pinname_seed if DEBUG
+		end
+
+		if f_list.include? ( formula_group )
+		then	
+		else
+				# Only add to list when first seen:
+			f_list << formula_group
+
+			formula_ord = f_list.index( formula_group ) + 1
+
+				# Proto only: must prepend string, and format for seed file:
+			# formula_seed = [ graph_id_out, base, offset, subindex_out, formula_ord, formula_group ].join( TAB )
+			formula_seed  = formula_leader	     +
+					graph_id_fmt         + graph_id_out +
+					base_fmt             + base +
+					offset_fmt           + offset +
+					subindex_fmt         + subindex_out +
+					ord_fmt              + formula_ord.to_s +
+					iform_fmt            + index_formula +
+					word_form_fmt        + string_formula +
+					abbrev_form_fmt      + abbrev_formula +
+					alpha_fmt            + alpha_out +
+					trailer
+
+			f_out.puts formula_seed
+			puts "formula seed: " + formula_seed  if DEBUG
+		end
+			# Format this for seed file?
+	 	# relationship = [ graph_id_out, pinname_ord, formula_ord ].join( TAB )
+		# r_list << relationship
+		# puts "relationship: " + relationship  if DEBUG
+		link_seed     = link_leader +
+				graph_id_fmt    + graph_id_out +
+				pinname_id_fmt  + pinname_id_to_s +
+				pinname_ord_fmt + pinname_ord.to_s +
+				formula_id_fmt  + formula_id_to_s +
+				formula_ord_fmt + formula_ord.to_s +
+				trailer
+
+		r_list << link_seed
+		puts "link seed: " + link_seed  if DEBUG
+	}
+
+	r_list_sort_uniq = r_list.sort.uniq
+	r_list_sort_uniq.each { | link | r_out.puts link }
+
+	file_in.close
+	p_out.close
+	f_out.close
+	r_out.close
+

@@ -1,12 +1,33 @@
 <li>
       <!--%= image_for character %-->
-      <%= formula.base %>.<%= formula.offset %>.<%= formula.subindex %> |
-      <%= formula.alpha %> |
-      <%= link_to formula.alpha, formula %>
+  <table  align="center" cellpadding="0" border=2 bordercolor=lightblue cellspacing="0" width="100%">
+    <tr align="left">
+      <td width="20" border=2 bordercolor=black >
+        <%= formula.ord %>
+      </td>
+      <td width="75" border=2 bordercolor=black >
+        <% if current_user.admin? %>
+            <%= link_to "delete", formula, method: :delete,
+                                    data: { confirm: "Are you sure?" } %>
+        <% end %>
+      </td>
+      <td width="75" border=2 bordercolor=gray >
+        <%= formula.base %>.<%= formula.offset %>.<%= formula.subindex %>
+      </td>
+      <td width="200" border=2 bordercolor=gray >
+        <%= link_to formula.iform, formula %>
+      </td>
+      <td width="300" border=2 bordercolor=gray >
+        <%= link_to formula.word_form, formula %>
+      </td>
+      <td width="100" border=2 bordercolor=gray >
+        <%= link_to formula.abbrev_form, formula %>
+      </td>
+      <td width="100" border=2 bordercolor=gray >
+        <%= link_to formula.alpha, formula %>
+      </td>
+    </tr>
+  </table>
 
-      <% if current_user.admin? %>
-        | <%= link_to "delete", formula, method: :delete,
-                                  data: { confirm: "Are you sure?" } %>
-      <% end %>
 </li>
 

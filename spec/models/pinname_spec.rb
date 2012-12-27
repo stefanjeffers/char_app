@@ -32,6 +32,11 @@ describe Pinname do
   it { should respond_to(:name_word) }
   it { should respond_to(:name_word_abbrev) }
   it { should respond_to(:part_of_speech) }
+  it { should respond_to(:links) }
+  it { should respond_to(:formulas) }
+  it { should respond_to(:linked_to?) }
+  it { should respond_to(:link_to!) }
+  it { should respond_to(:unlink!) }
 
 #___________________________________________________
 # Test base:
@@ -221,7 +226,7 @@ describe Pinname do
 
 #___________________________________________________
 # Test name_word:
-  
+    # Should have something there, even if it's only "n/a" or "unk"?
   describe "when name_word is not present" do
     before { @pin_name.name_word = " " }
     it { should_not be_valid }
@@ -235,14 +240,30 @@ describe Pinname do
 #___________________________________________________
 # Test part_of_speech:
   
-  describe "when part_of_speech is not present" do
-    before { @pin_name.part_of_speech = " " }
-    it { should_not be_valid }
-  end
-
   describe "when part_of_speech is too long" do
     before { @pin_name.part_of_speech = "a" * 13 }
     it { should_not be_valid }
+  end
+
+#___________________________________________________
+# Test link to formulas:
+
+  describe "linking to formulas" do
+    let(:formula) { FactoryGirl.create(:formula) }    
+    before do
+      @pin_name.save
+      @pin_name.link_to!( formula )
+    end
+
+    it { should be_linked_to(formula) }
+    its(:formulas) { should include(formula) }
+
+    describe "and unlinking" do
+      before { @pin_name.unlink!(formula) }
+
+      it { should_not be_linked_to(formula) }
+      its(:formulas) { should_not include(formula) }
+    end
   end
 
 #___________________________________________________

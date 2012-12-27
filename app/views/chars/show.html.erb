@@ -1,4 +1,4 @@
-<% provide(:title, @pinname.name_word) %>
+<% provide(:title, @pinname.pinyin) %>
 
 <div class="row">
   <aside class="span4">
@@ -11,17 +11,52 @@
   </aside>
 </div>
 
-<div>
-Index - 
-Pinyin -
-Name_word -
-Abbrev
-</div>
-<h1>
-<%= @pinname.base %>.<%= @pinname.offset %>: 
-<%= @pinname.pinyin %>,
-<%= @pinname.name_word %>
-(<%= @pinname.part_of_speech %>),
-<%= @pinname.name_word_abbrev %>
-</h1>
+<table  align="center" cellpadding="0" border=5 bordercolor=lightblue cellspacing="0" width="50%">
+  <tr align="center">
+    <th width="50" border=10 bordercolor=gray >
+      Index
+    </th>
+    <th width="50" border=10 bordercolor=gray >
+      Pinyin
+    </th>
+    <th width="50" border=10 bordercolor=gray >
+      Name_word
+    </th>
+    <th width="50" border=10 bordercolor=gray >
+      Abbrev
+    </th>
+  </tr>
+  <tr align="center">
+    <td>
+      <%= @pinname.base %>.<%= @pinname.offset %>.<%= @pinname.subindex %> 
+    </td>
+    <td>
+      <%= @pinname.pinyin %>
+    </td>
+    <td>
+      <%= @pinname.name_word %> (<%= @pinname.part_of_speech %>)
+    </td>
+    <td>
+       <%= @pinname.name_word_abbrev %>
+    </td>
+  </tr>
+</table>
+
+<!--header class="navbar navbar-fixed-top"-->
+  <div class="navbar-inner">
+    <div class="container">
+      <nav>
+        <ul class="nav pull-right">
+          <% if signed_in? %>
+            <li><%= link_to "Update Char", edit_pinname_path( @pinname ) %></li>
+            <!--li><%= link_to "Add Char Data", new_pinname_path %></li-->
+            <!-- Where, here? add a next link for next record, next in ID, or next in search results, etc? -->
+          <% else %>
+            <li><%= link_to "Sign in", signin_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+<!--/header-->
 

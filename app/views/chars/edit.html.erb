@@ -1,0 +1,34 @@
+<% provide(:title, "Edit Char Data") %> 
+<h1>Update Char Data</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@pinname) do |f| %>
+      <%= render 'shared/pinname_error_messages' %>
+
+      <%= f.label      :base %>
+      <%= f.text_field :base %>
+
+      <%= f.label      :offset %>
+      <%= f.text_field :offset %>
+
+      <%= f.label      :pinyin %>
+      <%= f.text_field :pinyin %>
+
+      <%= f.label      :name_word, "Name Word" %>
+      <%= f.text_field :name_word %>
+
+      <%= f.label      :name_word_abbrev, "Abbreviation" %>
+      <%= f.text_field :name_word_abbrev %>
+
+      <%= f.label      :part_of_speech, "Part of Speech" %>
+      <%= f.text_field :part_of_speech %>
+
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <% end %>
+
+    <!-- %= gravatar_for @user % -->
+    <!-- a href="http://gravatar.com/emails">change</a -->
+  </div>
+</div
+

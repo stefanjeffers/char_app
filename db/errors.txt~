@@ -1,0 +1,26 @@
+OBSOLETE: We are re-generating data by ruby script now:
+
+These errors are caused by strings containing "now" incorrectly getting picked up by edit and converted into "'NOW'"
+Must delete and reload pinnames table before load or create "all forms" table.
+But we can play with it for the time being, despite these five lines not being created:
+
+Error: near line  472: near "NOW": syntax error
+Error: near line 1515: near "NOW": syntax error
+Error: near line 1516: near "NOW": syntax error
+Error: near line 1679: near "NOW": syntax error
+Error: near line 1838: near "NOW": syntax error
+
+Many errors caused in "formulas" load, because sed to catch and remove ord column data
+failed to catch case of two-digit ord. Must correct sed and recreate and reload data.
+
+NEW:
+
+csv input file is not cleaned-up:
+
+* FIXED: Still have header line in place.
+
+* Have the line between each base index which has null or zero values in it,
+
+* Base index 2 is missing some lines, starts with subindex b.
+
+* 

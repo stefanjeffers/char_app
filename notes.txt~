@@ -1,0 +1,47 @@
+Determined that form_for arg must be an object of type given by the controller where it is defined, etc.
+
+Algo to seed relationship table between pinnames and formulas:
+
+1. do join of pinnames and formulas for each base/offset/subindex combo. Ie, for each graph_id.
+(want to add graph_id to formula table?)
+
+2. write a ruby script to loop through all of these.
+
+3. create a relationship entry for each combo of id from pinname and formula.
+   (length of resulting table should be about the number of lines in the spreadsheet).
+
+4. later, go through and delete false relationships (about 2 hours per second per entry.)
+
+Better if we can use existing ord values:
+    (But if we want to map to the table ID's, need to use DB, ie, joins?)
+
+0.  Think about 2D nature of pinname X formula pairs.
+00. Think about defining two separate "ord" fields:
+       One for multiple pinnames per graph_id, and one for multiple formulas per graph_id.
+       (and how to use, eg, uniq, sort, to find and fix them.)
+
+1. Go through original spreadsheet (or CSV output):
+
+2. Register each ord value, versus pinyin/name combo's (or base/offset/subindex combos?).
+
+3. Create a relationship entry for each if appropriate.
+
+4. May need to create an intermediate version using graph_id or equiv, and the two ord values,
+   Then do a select for each of those and set the id's. (could use SQL sub-select, etc?)
+
+Alt:
+
+1. Make uniq-ed pinname list (only relevant fields)
+2. Make uniq-ed formula list (only relevant fields)
+3. Make un-uniq-ed list with both pinname and formula (relevant fields).
+4. Write script:
+     a. for each combo of base/offset/subindex do
+            for each entry in pinname list
+                 for each entry in formula list,
+                        if there is a corresponding line in un-uniq-ed list (ie, this pinname/formula combo)
+                                write a record (graph_id or equiv and the two uniq-ed ord values).
+5.    
+
+
+
+

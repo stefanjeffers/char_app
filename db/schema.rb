@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121201095645) do
+ActiveRecord::Schema.define(:version => 20121211083919) do
 
   create_table "formulas", :force => true do |t|
     t.string   "base"
@@ -24,15 +24,34 @@ ActiveRecord::Schema.define(:version => 20121201095645) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "ord"
+    t.string   "graph_id"
   end
 
   add_index "formulas", ["abbrev_form"], :name => "index_formulas_on_abbrev_form"
   add_index "formulas", ["alpha"], :name => "index_formulas_on_alpha"
   add_index "formulas", ["base"], :name => "index_formulas_on_base"
+  add_index "formulas", ["graph_id"], :name => "index_formulas_on_graph_id"
   add_index "formulas", ["iform"], :name => "index_formulas_on_iform"
   add_index "formulas", ["offset"], :name => "index_formulas_on_offset"
+  add_index "formulas", ["ord"], :name => "index_formulas_on_ord"
   add_index "formulas", ["subindex"], :name => "index_formulas_on_subindex"
   add_index "formulas", ["word_form"], :name => "index_formulas_on_word_form"
+
+  create_table "links", :force => true do |t|
+    t.string   "graph_id"
+    t.integer  "pinname_id"
+    t.string   "pinname_ord"
+    t.integer  "formula_id"
+    t.string   "formula_ord"
+    t.string   "weight"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "links", ["formula_id"], :name => "index_links_on_formula_id"
+  add_index "links", ["graph_id"], :name => "index_links_on_graph_id"
+  add_index "links", ["pinname_id", "formula_id"], :name => "index_links_on_pinname_id_and_formula_id"
+  add_index "links", ["pinname_id"], :name => "index_links_on_pinname_id"
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
@@ -58,11 +77,14 @@ ActiveRecord::Schema.define(:version => 20121201095645) do
   end
 
   add_index "pinnames", ["base"], :name => "index_pinnames_on_base"
+  add_index "pinnames", ["graph_id"], :name => "index_pinnames_on_graph_id"
   add_index "pinnames", ["name_word"], :name => "index_pinnames_on_name_word"
   add_index "pinnames", ["name_word_abbrev"], :name => "index_pinnames_on_name_word_abbrev"
   add_index "pinnames", ["offset"], :name => "index_pinnames_on_offset"
+  add_index "pinnames", ["ord"], :name => "index_pinnames_on_ord"
   add_index "pinnames", ["part_of_speech"], :name => "index_pinnames_on_part_of_speech"
   add_index "pinnames", ["pinyin"], :name => "index_pinnames_on_pinyin"
+  add_index "pinnames", ["subindex"], :name => "index_pinnames_on_subindex"
 
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  graph_id: MyString
+  pinname_id: 1
+  pinname_ord: MyString
+  formula_id: 1
+  formula_ord: MyString
+  weight: MyString
+
+two:
+  graph_id: MyString
+  pinname_id: 1
+  pinname_ord: MyString
+  formula_id: 1
+  formula_ord: MyString
+  weight: MyString
